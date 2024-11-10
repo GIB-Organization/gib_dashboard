@@ -1,0 +1,18 @@
+{
+    "statistics": " احصائيات ",
+    "manageUsers":"إدارة المستخدمين",
+    "docsManagment":"إدارة الوثائق",
+    "clientsManagment":"إداره العملاء",
+    "tickets":"إدارة تذاكر الدعم",
+    "promoCodes":"العروض الترويجية",
+    "settings":"الإعدادات",
+    "totalDocs":" اجمالى الوثائق ",
+    "docsTotalValue":"اجمالي قيمة الوثائق",
+    "tplCount":"اجمالي وثائق ضد الغير",
+    "tplValue":"اجمالي قيمة الوثائق ضد الغير",
+    "comprehensiveTotal":"اجمالي وثائق الشامل",
+    "comprehensiveValue":"اجمالي قيمة الوثائق الشامل",
+    "clientsTotal":"اجمالي عدد العملاء المسجلين",
+    "clientsWithBuy":"اجمالي عدد العملاء مالكين الوثائق",
+    "openTickets":"تذاكر مفتوحة"
+}
