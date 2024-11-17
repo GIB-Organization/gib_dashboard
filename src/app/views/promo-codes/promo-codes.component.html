@@ -1,0 +1,15 @@
+<app-show-table 
+    [rows]="rows()" 
+    [columns]="columns"
+    [isActions]="true"
+    [actions]="actions">
+    <ng-container ngProjectAs="buttons">
+        <app-base-button-component classes="btn btn-primary me-1 btn-sm font_size__12 px-3 py-2 rounded-3" icon="plus-circle"> {{ 'addCoupon' | translate }}</app-base-button-component>
+    </ng-container>
+    <ng-template #itemsTemplate let-item="item">
+        <td> {{item.id}} </td>
+        <td> {{item.id}} </td>
+        <td> {{item.id}} </td>
+        <td> {{item.id}} </td>
+    </ng-template>
+</app-show-table>

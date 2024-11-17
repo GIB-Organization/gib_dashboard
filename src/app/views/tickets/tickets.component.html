@@ -1,0 +1,35 @@
+<div class="row mb-4">
+    <aside class="col-md-4">
+        <app-statistic-card classes="shadow text-dark" title="openTickets" [value]="200" icon="lock-open" background="var(--surface-0)" iconColor="var(--orange-500)" iconBg="var(--orange-100)"></app-statistic-card>
+    </aside>
+    <aside class="col-md-4">
+        <app-statistic-card classes="shadow text-dark" title="closeTickets" [value]="200" icon="lock" background="var(--surface-0)" iconColor="var(--blue-500)" iconBg="var(--blue-100)"></app-statistic-card>
+    </aside>
+    <aside class="col-md-4">
+        <app-statistic-card classes="shadow text-dark" title="processingTickets" [value]="200" icon="microchip" background="var(--surface-0)" iconColor="var(--purple-500)" iconBg="var(--purple-100)"></app-statistic-card>
+    </aside>
+</div>
+<app-show-table 
+    [rows]="rows()" 
+    [columns]="columns"
+    [isActions]="true"
+    [actions]="actions">
+    <ng-container ngProjectAs="filters">
+        <p-dropdown 
+        styleClass="me-2"
+        [options]="[1,2]" 
+        placeholder="{{'filter' | translate}}"
+        [showClear]="true">
+        <ng-template pTemplate="dropdownicon">
+            <i class="pi pi-filter"></i>
+        </ng-template>
+    </p-dropdown>
+    </ng-container>
+    <ng-template #itemsTemplate let-item="item">
+        <td> {{item.id}} </td>
+        <td> {{item.id}} </td>
+        <td> {{item.id}} </td>
+        <td> {{item.id}} </td>
+        <td> {{item.id}} </td>
+    </ng-template>
+</app-show-table>
