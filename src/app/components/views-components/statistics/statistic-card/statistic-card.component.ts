@@ -11,7 +11,12 @@ import { AvatarModule } from 'primeng/avatar';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StatisticCardComponent {
+  classes = input<string>('text-white');
   background = input<string>();
   title = input.required<string>();
   value = input<number>();
+  icon = input<string>('chart-bar');
+  iconColor = input<string>('var(--orange-600)');
+  iconBg = input<string>('var(--surface-0)');
+  
 }

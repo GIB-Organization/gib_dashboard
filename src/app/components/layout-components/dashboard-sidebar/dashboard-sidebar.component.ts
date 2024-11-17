@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { BaseLogoComponentComponent } from '../../base-components/base-logo-component/base-logo-component.component';
 import { BaseLinkComponentComponent } from "../../base-components/base-link-component/base-link-component.component";
 import { TranslateModule } from '@ngx-translate/core';
+import { ERoutes } from '../../../core/enums';
 
 @Component({
   selector: 'app-dashboard-sidebar',
@@ -16,37 +17,42 @@ export class DashboardSidebarComponent {
     {
       title: 'statistics',
       icon: 'chart-line',
-      path: '/'
+      path: ERoutes.statistics
     },
     {
       title: 'manageUsers',
       icon: 'lock',
-      path: '/342'
+      path: ERoutes.users
     },
     {
       title: 'docsManagment',
       icon: 'file',
-      path: '/ث23ث2'
+      path: ERoutes.policies
     },
     {
       title: 'clientsManagment',
       icon: 'users',
-      path: '/ثص'
+      path: ERoutes.clients
     },
     {
       title: 'tickets',
       icon: 'phone',
-      path: '/صص'
+      path: ERoutes.tickets
     },
     {
       title: 'promoCodes',
       icon: 'megaphone',
-      path: '/صضص'
+      path: ERoutes.promoCodes
+    },
+    {
+      title: 'blogs',
+      icon: 'file-edit',
+      path: ERoutes.blogs
     },
     {
       title: 'settings',
       icon: 'cog',
-      path: '/شيض'
+      path: ERoutes.settings
     },
   ]
 }

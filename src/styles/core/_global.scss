@@ -35,6 +35,10 @@ textarea {
     @extend %transition;
 }
 
+td, th{
+    text-align: start;
+}
+
 .white_color {
     color: var(--white);
 }
@@ -249,15 +253,15 @@ body{
     font-family: var(--fontRegular);
     @extend .font_size__13;
 }
-.p-inputwrapper, .p-inputnumber{
-    width: 100%;
-}
+// .p-inputwrapper, .p-inputnumber{
+//     width: 100%;
+// }
 
 .p-dropdown{
-    .p-dropdown-label{
-        line-height: 1;
-        min-height: 37px;
-    }
+    // .p-dropdown-label{
+    //     line-height: 1;
+    //     min-height: 37px;
+    // }
     .p-placeholder{
         @extend .font_size__13, .font_regular;
     }

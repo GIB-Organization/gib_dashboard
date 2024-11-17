@@ -1,0 +1,62 @@
+<div class="show_table bg-white rounded-4 px-3 py-4 shadow">
+
+    <div class="d-flex justify-content-between">
+        <div class="d-flex align-items-center">
+            <ng-content select="filters"></ng-content>
+            <app-base-button-component classes="btn btn-secondary me-1 btn-sm font_size__12 px-3 py-2 rounded-3" icon="download"> {{'export' | translate}} </app-base-button-component>
+            <app-base-button-component classes="btn btn-secondary me-1 btn-sm font_size__12 px-3 py-2 rounded-3" icon="upload"> {{'import' | translate}} </app-base-button-component>
+        </div>
+        <div class="projected_buttons">
+            <ng-content select="buttons"></ng-content>
+        </div>
+    </div>
+
+    <div class="search_text my-3">
+        <p-inputGroup styleClass="bg-body-secondary">
+            <input type="text" class="form-control" pInputText placeholder="بحث" />
+            <button type="button" pButton icon="pi pi-search" [text]="true" severity="secondary" class="bg-transparent"></button>
+        </p-inputGroup>
+    </div>
+
+    <p-table [loading]="isLoading()" [columns]="columns()" [value]="rows()" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th>#</th>
+                @for(col of columns; track col){
+                <th class="fw-normal">
+                    {{ col | translate}}
+                </th>
+                }
+                @if(isActions()){<th class="fw-normal"> {{'action' | translate}} </th>}
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body">
+            @for(item of rows(); track item){
+            <tr>
+                <ng-container [ngTemplateOutletContext]="{ item: item }"
+                    [ngTemplateOutlet]="itemsTemplate()"></ng-container>
+                <td>
+                    @for(item of actions(); track item){
+                        @if(item === EShowTableActions.show) {<p-button icon="pi pi-eye" [rounded]="true" [text]="true" severity="secondary " />}
+                        @if(item === EShowTableActions.edit) {<p-button icon="pi pi-pencil" [rounded]="true" [text]="true" severity="secondary " />}
+                        @if(item === EShowTableActions.delete) {<p-button icon="pi pi-trash" [rounded]="true" [text]="true" severity="danger " />}
+                    }
+                </td>
+            </tr>
+            }
+        </ng-template>
+
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="5">{{'noData' | translate}}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+
+    <p-paginator 
+    dir="ltr"
+    [first]="1"
+    [rows]="10" 
+    [totalRecords]="120" 
+    [rowsPerPageOptions]="[10, 20, 30]" />
+</div>

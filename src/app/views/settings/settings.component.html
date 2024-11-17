@@ -1,0 +1,11 @@
+<div class="settings_layout bg-white p-4 shadow rounded-4">
+    <div class="d-flex">
+        @for(item of links; track item){
+            <app-base-link-component classes="btn btn-light font_size__13 me-2" activeClasses="btn-primary" [path]="item.link"> {{item.title | translate}} </app-base-link-component>
+        }
+    </div>
+    <p-divider></p-divider>
+    <div [@slideInOutAnimation]="getRouteAnimationData()">  
+        <router-outlet></router-outlet>
+    </div>
+</div>
