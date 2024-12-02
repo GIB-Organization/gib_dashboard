@@ -4,22 +4,26 @@
     </div>
 
     <div class="mb-2">
-        <app-base-label-component for="emailInput" classes="form-label" [required]="true"> {{'email' | translate}} </app-base-label-component>
-        <input type="email" class="form-control" id="emailInput">
-        <!-- @if(loginFormService.email.invalid && loginFormService.email.touched){
-            <app-input-validation-alert-component> {{'errors.email' | translate}} </app-input-validation-alert-component>
-        } -->
+        <app-base-label-component for="emailInput" classes="form-label" [required]="true"> {{'email' | translate}}
+        </app-base-label-component>
+        <input type="email" [formControl]="email" class="form-control" id="emailInput">
+        @if(email.invalid && email.touched){
+        <app-input-validation-alert-component> {{'errors.email' | translate}} </app-input-validation-alert-component>
+        }
     </div>
     <div class="mb-2">
-        <app-base-label-component for="passwordInput" classes="form-label d-block" [required]="true"> {{'password' | translate}} </app-base-label-component>
-        <p-password styleClass="w-100" [feedback]="false" [toggleMask]="true" inputStyleClass="form-control" inputId="passwordInput"/>
-        <!-- @if(loginFormService.password.invalid && loginFormService.password.touched){
-            <app-input-validation-alert-component> {{'errors.required' | translate}} </app-input-validation-alert-component>
-        } -->
+        <app-base-label-component for="passwordInput" classes="form-label d-block" [required]="true"> {{'password' |
+            translate}} </app-base-label-component>
+        <p-password [formControl]="password" styleClass="w-100" [feedback]="false" [toggleMask]="true" inputStyleClass="form-control"
+            inputId="passwordInput" />
+        @if(password.invalid && password.touched){
+        <app-input-validation-alert-component> {{'errors.required' | translate}} </app-input-validation-alert-component>
+        }
     </div>
 
-    <app-base-link-component classes="primary_color font_size__13" [path]="'/'+ERoutes.forgotPassword"> {{'forgotPassword' | translate}} </app-base-link-component>
-    
-    <app-base-button-component [loading]="false" classes="btn-primary rounded-pill col-12 font_size__13 shadow"> {{'login' | translate }} </app-base-button-component>
+    <app-base-link-component classes="primary_color font_size__13" [path]="'/'+ERoutes.forgotPassword">
+        {{'forgotPassword' | translate}} </app-base-link-component>
 
+    <app-base-button-component (clicked)="submit()" [disabled]="form.invalid" [loading]="isLoading()" classes="btn-primary rounded-pill col-12 font_size__13 shadow">
+        {{'login' | translate }} </app-base-button-component>
 </div>

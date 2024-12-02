@@ -1,31 +1,31 @@
 <div>
     <div class="row">
         <aside class="col-md-4 my-3">
-            <app-statistic-card title="totalDocs" [value]="200" background="var(--blue-300)"></app-statistic-card>
+            <app-loading-content-component [loading]="isLoading()"><app-statistic-card title="totalDocs" [value]="statistics()?.policiesCount??0" background="var(--blue-300)"></app-statistic-card></app-loading-content-component>
         </aside>
         <aside class="col-md-4 my-3">
-            <app-statistic-card title="docsTotalValue" [value]="200" background="var(--orange-500)"></app-statistic-card>
+            <app-loading-content-component [loading]="isLoading()"><app-statistic-card title="docsTotalValue" [value]="(statistics()?.policiesTotalValue)??0 | currency" background="var(--orange-500)"></app-statistic-card></app-loading-content-component>
         </aside>
         <aside class="col-md-4 my-3">
-            <app-statistic-card title="tplCount" [value]="200" background="var(--cyan-300)"></app-statistic-card>
+            <app-loading-content-component [loading]="isLoading()"><app-statistic-card title="tplCount" [value]="statistics()?.tpiCount??0" background="var(--cyan-300)"></app-statistic-card></app-loading-content-component>
         </aside>
         <aside class="col-md-4 my-3">
-            <app-statistic-card title="tplValue" [value]="200" background="var(--cyan-800)"></app-statistic-card>
+            <app-loading-content-component [loading]="isLoading()"><app-statistic-card title="tplValue" [value]="(statistics()?.tpiTotalValue)??0 | currency" background="var(--cyan-800)"></app-statistic-card></app-loading-content-component>
         </aside>
         <aside class="col-md-4 my-3">
-            <app-statistic-card title="comprehensiveTotal" [value]="200" background="var(--gray-900)"></app-statistic-card>
+            <app-loading-content-component [loading]="isLoading()"><app-statistic-card title="comprehensiveTotal" [value]="statistics()?.comprehensiveCount??0" background="var(--gray-900)"></app-statistic-card></app-loading-content-component>
         </aside>
         <aside class="col-md-4 my-3">
-            <app-statistic-card title="comprehensiveValue" [value]="200" background="var(--green-700)"></app-statistic-card>
+            <app-loading-content-component [loading]="isLoading()"><app-statistic-card title="comprehensiveValue" [value]="(statistics()?.comprehensiveValue)??0 | currency" background="var(--green-700)"></app-statistic-card></app-loading-content-component>
         </aside>
         <aside class="col-md-4 my-3">
-            <app-statistic-card title="clientsTotal" [value]="200" background="var(--gray-500)"></app-statistic-card>
+            <app-loading-content-component [loading]="isLoading()"><app-statistic-card title="clientsTotal" [value]="statistics()?.registeredUsersCount??0" background="var(--gray-500)"></app-statistic-card></app-loading-content-component>
         </aside>
         <aside class="col-md-4 my-3">
-            <app-statistic-card title="clientsWithBuy" [value]="200" background="var(--red-800)"></app-statistic-card>
+            <app-loading-content-component [loading]="isLoading()"><app-statistic-card title="clientsWithBuy" [value]="statistics()?.policiesOwnersCount??0" background="var(--red-800)"></app-statistic-card></app-loading-content-component>
         </aside>
         <aside class="col-md-4 my-3">
-            <app-statistic-card title="openTickets" [value]="200" background="var(--blue-900)"></app-statistic-card>
+            <app-loading-content-component [loading]="isLoading()"><app-statistic-card title="openTickets" [value]="statistics()?.openTickets??0" background="var(--blue-900)"></app-statistic-card></app-loading-content-component>
         </aside>
     </div>
 </div>

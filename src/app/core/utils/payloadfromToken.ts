@@ -10,13 +10,9 @@ export const payloadFromToken = (token:string)=>{
 export const tokenUserAdapter = (user:ILegacyTokenUser, token:IRefreshTokenDTO):ILoginResponse=>{
     return {
         token: token,
-        userId: user.nameid,
-        username: user.fullName,
+        id: user.nameid,
+        fullName: user.fullName,
         email: user.email,
         phoneNumber: user.phoneNumber,
-        nationalId: user.nationalId,
-        iban: user.iban,
-        bankName: user.bankName,
-        fullName:user.fullName
     }
 }

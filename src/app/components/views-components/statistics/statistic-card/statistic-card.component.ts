@@ -14,7 +14,7 @@ export class StatisticCardComponent {
   classes = input<string>('text-white');
   background = input<string>();
   title = input.required<string>();
-  value = input<number>();
+  value = input.required<number | string | null>();
   icon = input<string>('chart-bar');
   iconColor = input<string>('var(--orange-600)');
   iconBg = input<string>('var(--surface-0)');

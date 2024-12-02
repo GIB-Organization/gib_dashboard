@@ -3,6 +3,7 @@ export enum ERoutes{
     forgotPassword = 'forgot-password',
     statistics = 'statistics',
     users = 'users',
+    user = 'users/user',
     policies = 'policies',
     clients = 'clients',
     tickets = 'tickets',
@@ -14,4 +15,8 @@ export enum ERoutes{
     contactInfo = `contact-info`,
     seo = `seo`,
 
+}
+
+export enum EQueryParams{
+    redirectTo = 'redirectTo'
 }

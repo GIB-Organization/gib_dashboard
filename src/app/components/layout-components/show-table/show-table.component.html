@@ -3,8 +3,12 @@
     <div class="d-flex justify-content-between">
         <div class="d-flex align-items-center">
             <ng-content select="filters"></ng-content>
-            <app-base-button-component classes="btn btn-secondary me-1 btn-sm font_size__12 px-3 py-2 rounded-3" icon="download"> {{'export' | translate}} </app-base-button-component>
-            <app-base-button-component classes="btn btn-secondary me-1 btn-sm font_size__12 px-3 py-2 rounded-3" icon="upload"> {{'import' | translate}} </app-base-button-component>
+            @if(showExport()){
+                <app-base-button-component [loading]="isExporting()" (clicked)="export()" [disabled]="!totalRecords()" classes="btn btn-secondary me-1 btn-sm font_size__12 px-3 py-2 rounded-3" icon="download"> {{'export' | translate}} </app-base-button-component>
+            }
+            @if(showImport()){
+                <app-base-button-component (clicked)="import()" classes="btn btn-secondary me-1 btn-sm font_size__12 px-3 py-2 rounded-3" icon="upload"> {{'import' | translate}} </app-base-button-component>
+            }
         </div>
         <div class="projected_buttons">
             <ng-content select="buttons"></ng-content>
@@ -13,12 +17,16 @@
 
     <div class="search_text my-3">
         <p-inputGroup styleClass="bg-body-secondary">
-            <input type="text" class="form-control" pInputText placeholder="بحث" />
-            <button type="button" pButton icon="pi pi-search" [text]="true" severity="secondary" class="bg-transparent"></button>
+            <input [(ngModel)]="searchText" [disabled]="!totalRecords()" type="text" class="form-control" pInputText placeholder="بحث" />
+            <button (click)="onSearch()" [disabled]="!totalRecords()" type="button" pButton icon="pi pi-search" [text]="true" severity="secondary" class="bg-transparent"></button>
         </p-inputGroup>
     </div>
 
-    <p-table [loading]="isLoading()" [columns]="columns()" [value]="rows()" [tableStyle]="{ 'min-width': '50rem' }">
+    <p-table 
+    [loading]="isLoading()" 
+    [columns]="columns()" 
+    [value]="rows()" 
+    [tableStyle]="{ 'min-width': '50rem' }">
         <ng-template pTemplate="header" let-columns>
             <tr>
                 <th>#</th>
@@ -30,20 +38,20 @@
                 @if(isActions()){<th class="fw-normal"> {{'action' | translate}} </th>}
             </tr>
         </ng-template>
-        <ng-template pTemplate="body">
-            @for(item of rows(); track item){
+        <ng-template pTemplate="body" let-item let-rowIndex="rowIndex">
             <tr>
                 <ng-container [ngTemplateOutletContext]="{ item: item }"
                     [ngTemplateOutlet]="itemsTemplate()"></ng-container>
                 <td>
-                    @for(item of actions(); track item){
-                        @if(item === EShowTableActions.show) {<p-button icon="pi pi-eye" [rounded]="true" [text]="true" severity="secondary " />}
-                        @if(item === EShowTableActions.edit) {<p-button icon="pi pi-pencil" [rounded]="true" [text]="true" severity="secondary " />}
-                        @if(item === EShowTableActions.delete) {<p-button icon="pi pi-trash" [rounded]="true" [text]="true" severity="danger " />}
-                    }
+                    <div class="d-flex flex-nowrap">
+                        @for(action of actions(); track action){
+                            @if(action === EShowTableActions.read) {<app-base-link-component classes="grey_color" icon="eye" [path]="route()" [queryParams]="routeQueryParam(item.id, EShowTableActions.read)"/>}
+                            @if(action === EShowTableActions.update) {<app-base-link-component classes="grey_color" icon="pencil" [path]="route()" [queryParams]="routeQueryParam(item.id, EShowTableActions.update)"/>}
+                            @if(action === EShowTableActions.delete) {<app-base-button-component classes="text-danger" icon="trash" (clicked)="confirmDelete(item, rowIndex)"/>}
+                        }
+                    </div>
                 </td>
             </tr>
-            }
         </ng-template>
 
         <ng-template pTemplate="emptymessage">
@@ -55,8 +63,37 @@
 
     <p-paginator 
     dir="ltr"
-    [first]="1"
-    [rows]="10" 
-    [totalRecords]="120" 
-    [rowsPerPageOptions]="[10, 20, 30]" />
+    [rows]="filter().limit" 
+    [totalRecords]="totalRecords()" 
+    [pageLinkSize]="3"
+    [rowsPerPageOptions]="[10, 20, 30]" 
+    (onPageChange)="pageChanged($event)"/>
 </div>
+
+<p-confirmDialog #deleteDialog>
+    <ng-template pTemplate="headless" let-message>
+        <div class="d-flex flex-column align-items-center p-5 bg-white round">
+            <div>
+                <i class="pi pi-exclamation-circle h1 text-danger"></i>
+            </div>
+            <span class="fw-bold h5 block mb-2 mt-4">
+                {{ message.header | translate }}
+            </span>
+            <p class="mb-0">{{ message.message | translate }}</p>
+            <div class="d-flex align-items-center gap-2 mt-4">
+                <button 
+                    pButton 
+                    label="{{'yes' | translate}}" 
+                    (click)="deleteDialog.accept()" 
+                    class="btn btn-danger btn-lg">
+                </button>
+                <button 
+                    pButton 
+                    label="{{'cancel' | translate}}"
+                    (click)="deleteDialog.reject()" 
+                    class="btn btn-secondary btn-lg">
+                </button>
+            </div>
+        </div>
+    </ng-template>
+</p-confirmDialog>

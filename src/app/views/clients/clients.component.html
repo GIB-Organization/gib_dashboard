@@ -2,7 +2,9 @@
     [rows]="rows()" 
     [columns]="columns"
     [isActions]="true"
-    [actions]="actions">
+    [actions]="actions"
+    (editClicked)="showDialog.set(true)"
+    (viewClicked)="showDialog.set(true)">
     <ng-container ngProjectAs="filters">
         <p-dropdown 
         styleClass="me-2"
@@ -22,3 +24,7 @@
         <td> {{item.id}} </td>
     </ng-template>
 </app-show-table>
+
+<app-dialog-component [(visible)]="showDialog">
+    <app-client-data></app-client-data>
+</app-dialog-component>

@@ -1,5 +1,11 @@
 export enum EShowTableActions{
-    show = 'SHOW',
+    read = 'SHOW',
     delete = 'DELETE',
-    edit = 'EDIT',
+    update = 'EDIT',
+    create = 'CREATE'
+}
+
+export enum EActionQueryParamKey{
+    mode = 'type',
+    id='id'
 }

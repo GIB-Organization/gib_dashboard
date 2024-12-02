@@ -1,10 +1,12 @@
 import { Routes } from '@angular/router';
 import { ERoutes } from './core/enums';
+import { AuthGuard, GuestGuard } from './core/guards/auth/auth.guard';
 
 const settingsLayoutRoutes: Routes = [
     {
         path: ERoutes.settings,
         loadComponent: () => import('./views/settings/settings.component').then(m => m.SettingsComponent),
+        canActivate: [AuthGuard],
         children: [
             {
                 path: '',
@@ -24,6 +26,7 @@ const mainLayoutRoutes: Routes = [
     {
         path: '',
         loadComponent: () => import('./layouts/main-layout/main-layout.component').then(m => m.MainLayoutComponent),
+        canActivate: [AuthGuard],
         children: [
             {
                 path: '',
@@ -39,6 +42,11 @@ const mainLayoutRoutes: Routes = [
                 path: ERoutes.users,
                 loadComponent: () => import('./views/users/users.component').then(m => m.UsersComponent),
                 data:{animation:ERoutes.users}
+            },
+            {
+                path: `${ERoutes.user}`,
+                loadComponent: () => import('./views/users/user/user.component').then(m => m.UserComponent),
+                data:{animation:ERoutes.user}
             },
             {
                 path: ERoutes.policies,
@@ -83,6 +91,7 @@ const authLayoutRoutes: Routes = [
     {
         path: '',
         loadComponent: () => import('./layouts/auth-layout/auth-layout.component').then(m => m.AuthLayoutComponent),
+        canActivate: [GuestGuard],
         children: [
             {
                 path: '',
@@ -92,6 +101,10 @@ const authLayoutRoutes: Routes = [
             {
                 path: ERoutes.login,
                 loadComponent: () => import('./views/auth/login/login.component').then(m => m.LoginComponent),
+            },
+            {
+                path: ERoutes.forgotPassword,
+                loadComponent: () => import('./views/auth/forgot-password/forgot-password.component').then(m => m.ForgotPasswordComponent),
             },
         ]
     }
@@ -103,7 +116,7 @@ const authLayoutRoutes: Routes = [
 
 
 export const routes: Routes = [
-    ...authLayoutRoutes,
     ...mainLayoutRoutes,
+    ...authLayoutRoutes,
     ...settingsLayoutRoutes,
 ];

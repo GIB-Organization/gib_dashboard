@@ -1,8 +1,8 @@
-import { IResponse } from './../../../models/response.interface';
+import { IResponse } from './../../../models';
 import { Injectable, inject } from '@angular/core';
 import { BASE_URL_TOKEN } from '../../../core/injection-tokens/base-url.token';
 import { HttpClient } from '@angular/common/http';
-import { IChangeInfo, IChangePassword, IForgotPassword, ILoginDTO, ILoginOtp, ILoginResponse, IRefreshTokenDTO, IRegisterDTO, IRegisterOtp, IResetPassword } from '../../../models/auth.interface';
+import { IChangeInfo, IChangePassword, IForgotPassword, ILoginDTO, ILoginResponse, IRefreshTokenDTO, IResetPassword } from '../../../models';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthApiService {
   private baseUrl = inject(BASE_URL_TOKEN);
-  private path = 'account'
+  private path = 'auth'
   public refreshPath = 'refreshToken'
   private http = inject(HttpClient)
   /**
@@ -21,40 +21,38 @@ export class AuthApiService {
     return this.http.post<IResponse<ILoginResponse>>(`${this.baseUrl}/${this.path}/login`, data)
   }
   /**
-   * @param  {IRegisterDTO} data
-   * @returns Observable
-   */
-  register(data:IRegisterDTO): Observable<IResponse<ILoginResponse>>{
-    return this.http.post<IResponse<ILoginResponse>>(`${this.baseUrl}/${this.path}/register`, data)
-  }
-  /**
    * @param  {IRefreshTokenDTO} data
    * @returns Observable
    */
   refreshToken(data:IRefreshTokenDTO | null): Observable<IResponse<IRefreshTokenDTO>>{
     return this.http.post<IResponse<IRefreshTokenDTO>>(`${this.baseUrl}/${this.path}/${this.refreshPath}`, data)
   }
-
-  sendRegisterOtp(data:IRegisterOtp): Observable<IResponse<string>>{
-    return this.http.post<IResponse<string>>(`${this.baseUrl}/${this.path}/sendRegisterOtp`, data)
-  }
-
-  sendLoginOtp(data:ILoginOtp): Observable<IResponse<string>>{
-    return this.http.post<IResponse<string>>(`${this.baseUrl}/${this.path}/sendLoginOtp`, data)
-  }
-
+  /**
+   * @param  {IChangeInfo} data
+   * @returns Observable
+   */
   changeInfo(data:IChangeInfo): Observable<IResponse<ILoginResponse>>{
     return this.http.post<IResponse<ILoginResponse>>(`${this.baseUrl}/${this.path}/changeInfo`, data)
   }
   
+  /**
+   * @param  {IChangePassword} data
+   * @returns Observable
+   */
   changePassword(data:IChangePassword): Observable<IResponse<null>>{
     return this.http.post<IResponse<null>>(`${this.baseUrl}/${this.path}/changePassword`, data)
   }
-
+  /**
+   * @param  {IForgotPassword} data
+   * @returns Observable
+   */
   forgotPassword(data:IForgotPassword): Observable<IResponse<string>>{
-    return this.http.post<IResponse<string>>(`${this.baseUrl}/${this.path}/sendForgotPasswordOtp`, data)
+    return this.http.post<IResponse<string>>(`${this.baseUrl}/${this.path}/forgotPassword`, data)
   }
-
+  /**
+   * @param  {IResetPassword} data
+   * @returns Observable
+   */
   resetPassword(data:IResetPassword): Observable<IResponse<null>>{
     return this.http.post<IResponse<null>>(`${this.baseUrl}/${this.path}/resetPassword`, data)
   }

@@ -23,10 +23,7 @@ export class AuthStoreQuery extends Query<IAuthStore> {
     this.authService.saveUserToLocal(USER);
   }
   get userId(){
-    return this._store.getValue().authData?.userId
-  }
-  get bankName(){
-    return this._store.getValue().authData?.bankName??''
+    return this._store.getValue().authData?.id
   }
   get email(){
     return this._store.getValue().authData?.email??''
@@ -34,17 +31,8 @@ export class AuthStoreQuery extends Query<IAuthStore> {
   get phoneNumber(){
     return this._store.getValue().authData?.phoneNumber??''
   }
-  get iban(){
-    return this._store.getValue().authData?.iban??''
-  }
-  get userName(){
-    return this._store.getValue().authData?.username??''
-  }
   get fullName(){
     return this._store.getValue().authData?.fullName??''
-  }
-  get nationalId(){
-    return this._store.getValue().authData?.nationalId??''
   }
   get token(){
     return this._store.getValue().authData?.token??null

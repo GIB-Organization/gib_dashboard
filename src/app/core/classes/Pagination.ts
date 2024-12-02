@@ -1,9 +1,9 @@
-import { IPagination } from "../../models/layout-models/pagination.interface";
+import { IPagination } from "../../models/filter.interface";
 
 export class Pagination implements IPagination{
     limit: number;
     page: number;
-    constructor(limit:number = 9, page:number = 1){
+    constructor(limit:number = 10, page:number = 1){
         this.limit = limit;
         this.page = page;
     }

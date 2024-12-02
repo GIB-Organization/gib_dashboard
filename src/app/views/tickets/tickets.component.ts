@@ -25,5 +25,5 @@ export class TicketsComponent {
       createdDate: '25-10-2023',
     }
   ])
-  actions = [EShowTableActions.show]
+  actions = [EShowTableActions.read]
 }
