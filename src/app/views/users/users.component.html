@@ -1,16 +1,25 @@
 <app-show-table 
     [rows]="rows()" 
+    [isLoading]="isLoading()"
     [columns]="columns"
     [isActions]="true"
-    [actions]="actions">
+    [actions]="actions"
+    [totalRecords]="totalRecords()"
+    [isExporting]="isExporting()"
+    [showImport]="false"
+    route="/{{ERoutes.user}}"
+    [(filter)]="filter"
+    (onDelete)="deleteItem($event)"
+    (filterChange)="getUsers()"
+    (onExport)="exportUsers()"
+    >
     <ng-container ngProjectAs="buttons">
-        <app-base-button-component classes="btn btn-primary me-1 btn-sm font_size__12 px-3 py-2 rounded-3" icon="plus-circle"> إضافة مستخدم </app-base-button-component>
+        <app-base-link-component path="/{{ERoutes.user}}" classes="btn btn-primary me-1 btn-sm font_size__12 px-3 py-2 rounded-3" icon="plus-circle"> إضافة مستخدم </app-base-link-component>
     </ng-container>
     <ng-template #itemsTemplate let-item="item">
         <td> {{item.id}} </td>
-        <td> {{item.name}} </td>
+        <td> {{item.fullName}} </td>
         <td> {{item.email}} </td>
-        <td> {{item.previlige}} </td>
-        <td> {{item.createdDate}} </td>
+        <td> {{item.createdDate | date : 'medium'}} </td>
     </ng-template>
 </app-show-table>

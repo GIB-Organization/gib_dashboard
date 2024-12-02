@@ -1,6 +1,6 @@
 import { refreshTokenInterceptor } from './core/interceptors/refreshToken/refresh-token.interceptor';
 import { environment } from '../environments/environment';
-import { ApplicationConfig, importProvidersFrom } from '@angular/core';
+import { ApplicationConfig, DEFAULT_CURRENCY_CODE, importProvidersFrom } from '@angular/core';
 import { InMemoryScrollingOptions, provideRouter, withComponentInputBinding, withInMemoryScrolling } from '@angular/router';
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
@@ -27,6 +27,7 @@ export const appConfig: ApplicationConfig = {
     {
       provide: BASE_URL_TOKEN, useValue: environment.apiUrl,
     },
+    {provide: DEFAULT_CURRENCY_CODE, useValue: ' SAR ' },
     provideRouter(routes, withInMemoryScrolling(scrollConfig), withComponentInputBinding()), 
     provideClientHydration(),
     provideAnimations(),
@@ -37,6 +38,6 @@ export const appConfig: ApplicationConfig = {
         errorHandlerInterceptor,
         refreshTokenInterceptor, 
       ]), 
-    )
+    ),
   ]
 };

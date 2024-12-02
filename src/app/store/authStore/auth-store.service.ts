@@ -1,13 +1,14 @@
 import { Injectable, inject } from '@angular/core';
 import { AuthApiService } from '../../services/api/authApi/auth-api.service';
 import { AuthStore } from './auth-store.store';
-import { IChangePassword, IForgotPassword, ILoginDTO, ILoginOtp, IRefreshTokenDTO, IResetPassword } from '../../models/auth.interface';
+import { IChangePassword, IForgotPassword, ILoginDTO, IRefreshTokenDTO, IResetPassword } from '../../models/auth.interface';
 import { take } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
 import { ToasterService } from '../../services/toaster/toaster.service';
 import { AuthStoreQuery } from './auth-store.query';
 import { IErrorResponse } from '../../models/response.interface';
+import { EQueryParams, ERoutes } from '../../core/enums';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +30,7 @@ export class AuthStoreService {
   logout(){
     this.store.reset();
     this.authService.logout();
+    this.router.navigate([ERoutes.login]);
   }
   /**
    * @param  {ILoginDTO} data
@@ -38,7 +40,8 @@ export class AuthStoreService {
     this.api.login(data).pipe(take(1)).subscribe({
       next: (res) => {
         this.toasterService.addSuccess()
-        this.authStoreQuery.setUser = res.result
+        this.authStoreQuery.setUser = res.result;
+        this.afterLoginRedirect();
       },
       complete: () => this.store.setLoading(false),
       error: (err) => {
@@ -48,22 +51,11 @@ export class AuthStoreService {
       }
     });
   }
-  
-  /**
-   * @param  {ILoginOtp} data
-   */
-  sendLoginOtp(data: ILoginOtp) {
-    this.store.setLoading(true)
-    this.api.sendLoginOtp(data).pipe(take(1)).subscribe({
-      next: (res) => {
-        this.store.update({ otp: res.result });
-      },
-      complete: () => this.store.setLoading(false),
-      error: (err) => {
-        this.toasterService.addError('customRequestErrors.invalidUserOrPassword')
-        this.store.setLoading(false)
-      }
-    });
+
+  afterLoginRedirect(){
+    const redirect = this.activatedRoute.snapshot.queryParams[EQueryParams.redirectTo]
+    console.log(redirect)
+    this.router.navigate([ redirect || '/']);
   }
   /**
    * @param  {IRefreshTokenDTO} data
@@ -107,11 +99,11 @@ export class AuthStoreService {
     this.store.setLoading(true)
     this.api.forgotPassword(data).pipe(take(1)).subscribe({
       next: (res) => {
-        this.store.update({ otp: res.result });
+        // this.store.update({ otp: res.result });
       },
       complete: () => this.store.setLoading(false),
-      error: (err) => {
-        this.toasterService.addError('customRequestErrors.invalidUserOrPassword')
+      error: (err:IErrorResponse) => {
+        this.toasterService.addError(err.error.message)
         this.store.setLoading(false)
       }
     });

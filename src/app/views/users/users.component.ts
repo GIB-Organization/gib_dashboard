@@ -1,27 +1,50 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { UsersStoreQuery } from './../../store/usersStore/users-store.query';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit, signal, WritableSignal } from '@angular/core';
 import { ShowTableComponent } from '../../components/layout-components/show-table/show-table.component';
 import { BaseButtonComponentComponent } from "../../components/base-components/base-button-component/base-button-component.component";
 import { ButtonModule } from 'primeng/button';
-import { EShowTableActions } from '../../core/enums';
+import { ERoutes, EShowTableActions } from '../../core/enums';
+import { UsersStoreService } from '../../store/usersStore/users-store.service';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { Filter } from '../../core/classes/Filter';
+import { DatePipe } from '@angular/common';
+import { IItemAction } from '../../models';
+import { BaseLinkComponentComponent } from "../../components/base-components/base-link-component/base-link-component.component";
 
 @Component({
   selector: 'app-users',
   standalone: true,
-  imports: [ShowTableComponent, BaseButtonComponentComponent, ButtonModule],
+  imports: [ShowTableComponent, ButtonModule, DatePipe, BaseLinkComponentComponent],
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class UsersComponent {
-  columns:string[] = ['name','email','previlige','createdDate']
-  rows = signal([
-    {
-      id: 1,
-      name: 'wasem',
-      email: 'example@gmail.com',
-      previlige: 'admin',
-      createdDate: '25-10-2023',
-    }
-  ])
-  actions = [EShowTableActions.delete, EShowTableActions.edit]
+export class UsersComponent implements OnInit {
+  ref = inject(DestroyRef);
+  usersStoreService = inject(UsersStoreService);
+  usersStoreQuery = inject(UsersStoreQuery);
+  filter = new Filter();
+  columns:string[] = ['name','email','createdDate']
+  rows = toSignal(this.usersStoreQuery.users$, {initialValue:[]});
+  isLoading = toSignal(this.usersStoreQuery.selectLoading(), {initialValue: false});
+  totalRecords = toSignal(this.usersStoreQuery.usersCount$, {initialValue: 0});
+  isExporting = toSignal(this.usersStoreQuery.isExporting$, {initialValue: false});
+  actions = [EShowTableActions.delete, EShowTableActions.update]
+
+  get ERoutes(){return ERoutes}
+  ngOnInit(): void {
+    this.getUsers()
+  }
+
+  deleteItem(event:IItemAction){
+    this.usersStoreService.deleteUser(event.item.id, event.index, this.ref);
+  }
+
+  getUsers(){
+    this.usersStoreService.getUsers({...this.filter}, this.ref)
+  }
+
+  exportUsers(){
+    this.usersStoreService.exportUsers({...this.filter}, this.ref)
+  }
 }

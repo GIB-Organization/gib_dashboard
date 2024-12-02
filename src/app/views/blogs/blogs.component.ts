@@ -25,5 +25,5 @@ export class BlogsComponent {
       createdDate: '25-10-2023',
     }
   ])
-  actions = [EShowTableActions.delete, EShowTableActions.show, EShowTableActions.edit]
+  actions = [EShowTableActions.delete, EShowTableActions.read, EShowTableActions.update]
 }
