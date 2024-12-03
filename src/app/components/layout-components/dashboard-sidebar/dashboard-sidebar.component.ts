@@ -1,18 +1,21 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { BaseLogoComponentComponent } from '../../base-components/base-logo-component/base-logo-component.component';
 import { BaseLinkComponentComponent } from "../../base-components/base-link-component/base-link-component.component";
 import { TranslateModule } from '@ngx-translate/core';
 import { ERoutes } from '../../../core/enums';
+import { BaseButtonComponentComponent } from "../../base-components/base-button-component/base-button-component.component";
+import { AuthStoreService } from '../../../store/authStore/auth-store.service';
 
 @Component({
   selector: 'app-dashboard-sidebar',
   standalone: true,
-  imports: [BaseLogoComponentComponent, BaseLinkComponentComponent, TranslateModule],
+  imports: [BaseLogoComponentComponent, BaseLinkComponentComponent, TranslateModule, BaseButtonComponentComponent],
   templateUrl: './dashboard-sidebar.component.html',
   styleUrl: './dashboard-sidebar.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DashboardSidebarComponent {
+  authStoreService = inject(AuthStoreService);
   links : {title:string, icon:string, path:string}[] = [
     {
       title: 'statistics',

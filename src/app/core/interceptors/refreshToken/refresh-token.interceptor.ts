@@ -24,14 +24,11 @@ export const refreshTokenInterceptor: HttpInterceptorFn = (req, next) => {
               return next(setHttpHeaders(req, res?.result.accessToken));
           }),
           catchError((error) => {
-            return throwError({
-              ...error,
-              status: ErrorCodes.unauthorized
-            });
+            return throwError(()=>error);
           })
         );
       }
-      return throwError(error);
+      return throwError(()=>error);
     })
   );
 };

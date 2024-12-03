@@ -25,7 +25,6 @@ export class UsersStoreService {
       },
       complete: () => this.store.setLoading(false),
       error: (err) => {
-        this.toaster.addError()
         this.store.setLoading(false)
       }
     });
@@ -39,7 +38,6 @@ export class UsersStoreService {
       },
       complete: () => this.store.setLoading(false),
       error: (err) => {
-        this.toaster.addError()
         this.store.setLoading(false)
       }
     });

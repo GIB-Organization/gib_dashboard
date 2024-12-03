@@ -73,7 +73,7 @@ export interface IResetPassword{
 }
 
 export interface IResetPasswordFormGroup{
-  code: FormControl<string>,
+  code: FormControl<string|null>,
   newPassword:FormControl<string>,
   confirmPassword:FormControl<string>,
 }

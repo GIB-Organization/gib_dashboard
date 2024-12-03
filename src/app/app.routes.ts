@@ -106,6 +106,10 @@ const authLayoutRoutes: Routes = [
                 path: ERoutes.forgotPassword,
                 loadComponent: () => import('./views/auth/forgot-password/forgot-password.component').then(m => m.ForgotPasswordComponent),
             },
+            {
+                path: ERoutes.resetPassword,
+                loadComponent: () => import('./views/auth/reset-password/reset-password.component').then(m => m.ResetPasswordComponent),
+            },
         ]
     }
 ]
