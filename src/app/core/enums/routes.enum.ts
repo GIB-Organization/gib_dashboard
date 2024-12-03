@@ -1,6 +1,7 @@
 export enum ERoutes{
     login = 'login',
     forgotPassword = 'forgot-password',
+    resetPassword = 'reset-password',
     statistics = 'statistics',
     users = 'users',
     user = 'users/user',

@@ -8,7 +8,7 @@ import { HttpClientModule, provideHttpClient, withFetch, withInterceptors } from
 import { translateModuleImport } from './core/config/translate.config';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { authInterceptor } from './core/interceptors/auth/auth.interceptor';
-import { BASE_URL_TOKEN } from './core/injection-tokens/base-url.token';
+import { BASE_URL_TOKEN, SITE_BASE_URL_TOKEN } from './core/injection-tokens/base-url.token';
 import { MessageService } from 'primeng/api';
 import { errorHandlerInterceptor } from './core/interceptors/errorHandler/error-handler.interceptor';
 
@@ -24,9 +24,8 @@ export const appConfig: ApplicationConfig = {
       HttpClientModule, 
       translateModuleImport()
     ]),
-    {
-      provide: BASE_URL_TOKEN, useValue: environment.apiUrl,
-    },
+    {provide: BASE_URL_TOKEN, useValue: environment.apiUrl,},
+    {provide: SITE_BASE_URL_TOKEN, useValue: environment.siteApiUrl},
     {provide: DEFAULT_CURRENCY_CODE, useValue: ' SAR ' },
     provideRouter(routes, withInMemoryScrolling(scrollConfig), withComponentInputBinding()), 
     provideClientHydration(),

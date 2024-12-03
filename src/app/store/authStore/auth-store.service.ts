@@ -99,7 +99,8 @@ export class AuthStoreService {
     this.store.setLoading(true)
     this.api.forgotPassword(data).pipe(take(1)).subscribe({
       next: (res) => {
-        // this.store.update({ otp: res.result });
+        this.toasterService.addSuccess('codeIsSent');
+        this.router.navigate([`/${ERoutes.resetPassword}`]);
       },
       complete: () => this.store.setLoading(false),
       error: (err:IErrorResponse) => {
@@ -113,11 +114,12 @@ export class AuthStoreService {
     this.store.setLoading(true)
     this.api.resetPassword(data).pipe(take(1)).subscribe({
       next: () => {
-        this.toasterService.addSuccess('views.auth.passwordChanged')
+        this.toasterService.addSuccess('passwordIsChanged')
+        this.router.navigate([`/${ERoutes.login}`]);
       },
       complete: () => this.store.setLoading(false),
-      error: (err) => {
-        this.toasterService.addError('customRequestErrors.invalidEmailOrId')
+      error: (err:IErrorResponse) => {
+        this.toasterService.addError(err.error.message)
         this.store.setLoading(false)
       }
     });

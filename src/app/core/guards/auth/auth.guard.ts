@@ -20,13 +20,13 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot
   ): boolean {
     if (isPlatformBrowser(this.platformId)) {
-      if (this.authStoreQuery.isAuthenticated) {
-        return true;
+      if (!this.authStoreQuery.isAuthenticated) {
+        this.router.navigate([`/${ERoutes.login}`]);
+        return false;
       }
-      this.router.navigate([`/${ERoutes.login}`]);
-      return false;
+      return true
     }
-    return true;
+    return false;
   }
 }
 
@@ -45,7 +45,7 @@ export class GuestGuard implements CanActivate {
         this.router.navigate(['/']);
         return false;
       }
-      return true;
+      return true
     }
     return false
   }

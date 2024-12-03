@@ -1,5 +1,7 @@
 // environment.ts (default)
+const URL = 'https://itarm-insurance.com/api/v1'
 export const environment = {
     production: true,
-    apiUrl: 'https://itarm-insurance.com/api/v1/admin',
+    siteApiUrl: URL,
+    apiUrl: `${URL}/admin`
   };
