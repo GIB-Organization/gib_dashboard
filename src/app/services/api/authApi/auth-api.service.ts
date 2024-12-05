@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 export class AuthApiService {
   private baseUrl = inject(BASE_URL_TOKEN);
   private siteBaseUrl = inject(SITE_BASE_URL_TOKEN);
-  private path = 'auth'
+  public path = 'auth'
   public refreshPath = 'refreshToken'
   private http = inject(HttpClient)
   /**

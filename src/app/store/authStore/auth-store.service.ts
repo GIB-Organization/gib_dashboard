@@ -45,8 +45,7 @@ export class AuthStoreService {
       },
       complete: () => this.store.setLoading(false),
       error: (err) => {
-        this.store.setError(err.error)
-        this.toasterService.addError(err.error)
+        this.toasterService.addError(err.error.message)
         this.store.setLoading(false)
       }
     });
@@ -54,7 +53,6 @@ export class AuthStoreService {
 
   afterLoginRedirect(){
     const redirect = this.activatedRoute.snapshot.queryParams[EQueryParams.redirectTo]
-    console.log(redirect)
     this.router.navigate([ redirect || '/']);
   }
   /**
@@ -71,7 +69,6 @@ export class AuthStoreService {
       },
       complete: () => this.store.setLoading(false),
       error: (err) => {
-        this.store.setError(err)
         this.store.setLoading(false)
       }
     });
@@ -87,7 +84,6 @@ export class AuthStoreService {
       },
       complete: () => this.store.setLoading(false),
       error: (err:IErrorResponse) => {
-        this.store.setError(err)
         this.store.setLoading(false)
         this.toasterService.addError(err.error.message ?? 'customRequestErrors.wrongPassword')
       }

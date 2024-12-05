@@ -13,7 +13,7 @@ export const refreshTokenInterceptor: HttpInterceptorFn = (req, next) => {
   const authStoreQuery = inject(AuthStoreQuery);
   return next(req).pipe(
     catchError((error) => {
-      if (error.status === ErrorCodes.unauthorized && !error.url.includes(authApiService.refreshPath)) {
+      if (error.status === ErrorCodes.unauthorized && !error.url.includes(authApiService.refreshPath) &&  !error.url.includes(authApiService.path)) {
         return authApiService.refreshToken(authStoreQuery.token).pipe(
           switchMap((res:IResponse<IRefreshTokenDTO>) => {
             const USER : ILoginResponse = {
@@ -24,7 +24,10 @@ export const refreshTokenInterceptor: HttpInterceptorFn = (req, next) => {
               return next(setHttpHeaders(req, res?.result.accessToken));
           }),
           catchError((error) => {
-            return throwError(()=>error);
+            return throwError({
+              ...error,
+              status: ErrorCodes.unauthorized
+            });
           })
         );
       }
