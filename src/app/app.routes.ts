@@ -59,6 +59,11 @@ const mainLayoutRoutes: Routes = [
                 data:{animation:ERoutes.clients}
             },
             {
+                path: `${ERoutes.client}`,
+                loadComponent: () => import('./views/clients/client/client.component').then(m => m.ClientComponent),
+                data:{animation:ERoutes.client}
+            },
+            {
                 path: ERoutes.tickets,
                 loadComponent: () => import('./views/tickets/tickets.component').then(m => m.TicketsComponent),
                 data:{animation:ERoutes.tickets}

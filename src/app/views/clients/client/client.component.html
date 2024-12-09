@@ -1,0 +1,14 @@
+<div class="user_form bg-white p-4 shadow rounded-4 font_size__15">
+    <app-loading-content-component [loading]="isLoading()">
+        <h6 class="h6 mb-5 secondary_color"> {{ 'readClient' | translate}} : {{clientsStoreQuery.record?.fullName}} </h6>
+        <div class="my-4">
+            <ul class="list-unstyled">
+                <li class="mb-4"> # {{clientsStoreQuery.record?.id}} </li>
+                <li class="mb-4"><span class="primary_color"> {{'name' | translate}} </span> : {{clientsStoreQuery.record?.fullName}} </li>
+                <li class="mb-4"><span class="primary_color"> {{'email' | translate}} </span> : {{clientsStoreQuery.record?.email}} </li>
+                <li class="mb-4"><span class="primary_color"> {{'phone' | translate}} </span> : {{clientsStoreQuery.record?.phoneNumber}} </li>
+                <li class="mb-4"><span class="primary_color"> {{'nationalId' | translate}} </span> : {{clientsStoreQuery.record?.nationalId}} </li>
+            </ul>
+        </div>
+    </app-loading-content-component>
+</div>

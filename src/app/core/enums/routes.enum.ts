@@ -15,6 +15,7 @@ export enum ERoutes{
     generalSettings = `general-settings`,
     contactInfo = `contact-info`,
     seo = `seo`,
+    client = `clients/client`,
 
 }
 

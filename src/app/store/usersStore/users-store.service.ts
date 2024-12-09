@@ -7,6 +7,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ToasterService } from '../../services/toaster/toaster.service';
 import { Export } from '../../core/classes/Export';
 import { ERoutes } from '../../core/enums';
+import { helpers } from '../../core/utils/helpers';
 
 @Injectable({
   providedIn: 'root'
@@ -79,7 +80,7 @@ export class UsersStoreService {
           USERS.splice(index, 1);
           this.store.update({
             isProcessing: false,
-            users: USERS
+            users: helpers.deleteItemInList(this.store.getValue().users, index)
           })
         },
         complete:()=>{this.store.setLoading(false)},

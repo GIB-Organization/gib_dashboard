@@ -29,7 +29,7 @@ export class ResetPasswordComponent {
   authStoreQuery = inject(AuthStoreQuery);
   isLoading = toSignal(this.authStoreQuery.selectLoading());
   form = this.#fb.group<IResetPasswordFormGroup>({
-    code: this.#fb.control(null, [Validators.minLength(4), Validators.required]),
+    code: this.#fb.control(null, [Validators.minLength(6), Validators.required]),
     newPassword: this.#fb.nonNullable.control('', [Validators.required, VALIDATORS.password]),
     confirmPassword: this.#fb.nonNullable.control('', [Validators.required, VALIDATORS.password]),
   })
