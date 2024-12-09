@@ -1,7 +1,6 @@
 import { UsersStoreQuery } from './../../store/usersStore/users-store.query';
-import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit, signal, WritableSignal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { ShowTableComponent } from '../../components/layout-components/show-table/show-table.component';
-import { BaseButtonComponentComponent } from "../../components/base-components/base-button-component/base-button-component.component";
 import { ButtonModule } from 'primeng/button';
 import { ERoutes, EShowTableActions } from '../../core/enums';
 import { UsersStoreService } from '../../store/usersStore/users-store.service';

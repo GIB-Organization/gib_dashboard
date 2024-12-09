@@ -17,7 +17,7 @@
 
     <div class="search_text my-3">
         <p-inputGroup styleClass="bg-body-secondary">
-            <input [(ngModel)]="searchText" [disabled]="!totalRecords()" type="text" class="form-control" pInputText placeholder="بحث" />
+            <input (keydown.enter)="onSearch()" [(ngModel)]="searchText" type="text" class="form-control" pInputText placeholder="{{'search' | translate}}" />
             <button (click)="onSearch()" [disabled]="!totalRecords()" type="button" pButton icon="pi pi-search" [text]="true" severity="secondary" class="bg-transparent"></button>
         </p-inputGroup>
     </div>
