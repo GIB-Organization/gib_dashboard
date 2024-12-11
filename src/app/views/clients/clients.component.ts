@@ -1,10 +1,9 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
 import { ShowTableComponent } from "../../components/layout-components/show-table/show-table.component";
 import { DropdownModule } from 'primeng/dropdown';
 import { TranslateModule } from '@ngx-translate/core';
 import { ButtonModule } from 'primeng/button';
 import { ERoutes, EShowTableActions } from '../../core/enums';
-import { DialogComponentComponent } from "../../components/shared-components/dialog-component/dialog-component.component";
 import { ClientsStoreService } from '../../store/clientsStore/clients-store.service';
 import { ClientsStoreQuery } from '../../store/clientsStore/clients-store.query';
 import { Filter } from '../../core/classes/Filter';

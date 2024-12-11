@@ -29,7 +29,6 @@ export class ShowTableComponent {
   itemsTemplate = contentChild.required<TemplateRef<any>>('itemsTemplate')
   columns = input.required<string[]>();
   rows = input.required<any[]>();
-  isActions = input<boolean>(false);
   totalRecords = input<number>(0);
   isLoading = input<boolean>(false);
   isExporting = input<boolean>(false);

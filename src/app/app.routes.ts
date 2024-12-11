@@ -69,6 +69,11 @@ const mainLayoutRoutes: Routes = [
                 data:{animation:ERoutes.tickets}
             },
             {
+                path: `${ERoutes.ticket}`,
+                loadComponent: () => import('./views/tickets/ticket/ticket.component').then(m => m.TicketComponent),
+                data:{animation:ERoutes.ticket}
+            },
+            {
                 path: ERoutes.promoCodes,
                 loadComponent: () => import('./views/promo-codes/promo-codes.component').then(m => m.PromoCodesComponent),
                 data:{animation:ERoutes.promoCodes}
@@ -83,11 +88,7 @@ const mainLayoutRoutes: Routes = [
                 loadComponent: () => import('./views/single-blog/single-blog.component').then(m => m.SingleBlogComponent),
                 data:{animation:ERoutes.blogs}
             },
-            {
-                path: `${ERoutes.ticket}/:id`,
-                loadComponent: () => import('./views/single-ticket/single-ticket.component').then(m => m.SingleTicketComponent),
-                data:{animation:ERoutes.ticket}
-            },
+            
             ...settingsLayoutRoutes
         ],
     }
