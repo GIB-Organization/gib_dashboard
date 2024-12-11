@@ -1,26 +1,36 @@
 <app-show-table 
-    [rows]="rows()" 
-    [columns]="columns">
+[rows]="rows()" 
+[isLoading]="isLoading()" 
+[columns]="columns" 
+[totalRecords]="totalRecords()" 
+[isExporting]="isExporting()"
+[showImport]="false" 
+route="/{{ERoutes.client}}"
+[(filter)]="filter"
+(filterChange)="getPolicies()" 
+(onExport)="exportPolicies()">
     <ng-container ngProjectAs="filters">
-        <p-dropdown 
-        styleClass="me-2"
-        [options]="[1,2]" 
-        placeholder="{{'filter' | translate}}"
-        [showClear]="true">
-        <ng-template pTemplate="dropdownicon">
-            <i class="pi pi-filter"></i>
-        </ng-template>
-    </p-dropdown>
+        <p-dropdown (onChange)="getPolicies()" [(ngModel)]="filter.type" styleClass="me-2" [options]="types" optionLabel="label" optionValue="id" placeholder="{{'filter' | translate}}">
+            <ng-template pTemplate="dropdownicon">
+                <i class="pi pi-filter"></i>
+            </ng-template>
+            <ng-template let-selectedItem pTemplate="selectedItem">
+                {{selectedItem.label | translate}}
+            </ng-template>
+            <ng-template let-item pTemplate="item">
+                {{item.label | translate}}
+            </ng-template>
+        </p-dropdown>
     </ng-container>
     <ng-template #itemsTemplate let-item="item">
         <td> {{item.id}} </td>
-        <td> {{item.id}} </td>
-        <td> {{item.id}} </td>
-        <td> {{item.id}} </td>
-        <td> {{item.id}} </td>
-        <td> {{item.id}} </td>
-        <td> {{item.id}} </td>
-        <td> {{item.id}} </td>
-        <td> {{item.id}} </td>
+        <td> {{item.policyNumber}} </td>
+        <td> {{item[policiesStoreQuery.companyNameKey]}} </td>
+        <td> {{item.insuranceType}} </td>
+        <td> {{item.ownerName}} </td>
+        <td> {{item.policyValue | currency}} </td>
+        <td> <app-base-badge-component [colorVar]="paymentStatusBadge[item.paymentStatus].color"> {{paymentStatusBadge[item.paymentStatus].label | translate}} </app-base-badge-component> </td>
+        <td> <span class="d-block" style="width: 60px"> <app-base-image-component [alt]="item.paymentMethod" [path]="payments.getLogoUrl(item.paymentMethod)"></app-base-image-component> </span> </td>
+        <td> {{item.policyStartDate}} </td>
     </ng-template>
 </app-show-table>

@@ -11,7 +11,7 @@ export enum ERoutes{
     promoCodes = 'promotions',
     blogs = 'blogs',
     settings = 'settings',
-    ticket = 'ticket',
+    ticket = 'tickets/ticket',
     generalSettings = `general-settings`,
     contactInfo = `contact-info`,
     seo = `seo`,

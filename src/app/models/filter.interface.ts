@@ -4,5 +4,6 @@ export interface IPagination{
 }
 
 export interface IFilter extends IPagination{
-    searchText?: string
+    searchText?: string,
+    type?:any
 }
