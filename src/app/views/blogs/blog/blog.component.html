@@ -1,0 +1,76 @@
+<div class=" bg-white p-4 shadow rounded-4">
+    <app-loading-content-component [loading]="isLoading()">
+        <h6 class="h6 mb-5"> {{titleMap[type] | translate}} </h6>
+        <div class="mb-3">
+            <app-base-label-component for="titleAr" classes="form-label"> {{'titleAr' | translate}}
+            </app-base-label-component>
+            <input [readOnly]="type === EShowTableActions.read" type="text" [formControl]="titleAr" id="titleAr"
+                class="form-control">
+            @if(titleAr.invalid && titleAr.touched){
+            <app-input-validation-alert-component> {{'errors.required' | translate}}
+            </app-input-validation-alert-component>
+            }
+        </div>
+        <div class="mb-3">
+            <app-base-label-component for="titleEn" classes="form-label"> {{'titleEn' | translate}}
+            </app-base-label-component>
+            <input [readOnly]="type === EShowTableActions.read" type="text" [formControl]="titleEn" id="titleEn"
+                class="form-control">
+            @if(titleEn.invalid && titleEn.touched){
+            <app-input-validation-alert-component> {{'errors.required' | translate}}
+            </app-input-validation-alert-component>
+            }
+        </div>
+        <div class="mb-3">
+            <app-base-label-component for="slug" classes="form-label"> {{'slug' | translate}}
+            </app-base-label-component>
+            <input [readOnly]="type === EShowTableActions.read" type="text" [formControl]="slug" id="slug"
+                class="form-control">
+            @if(slug.invalid && slug.touched){
+            <app-input-validation-alert-component> {{'errors.noSpaces' | translate}}
+            </app-input-validation-alert-component>
+            }
+        </div>
+        <div class="mb-3">
+            <app-base-label-component for="descAr" classes="form-label"> {{'contentAr' | translate}}
+            </app-base-label-component>
+            <p-editor [readonly]="type === EShowTableActions.read" dir="ltr" [formControl]="descriptionAr"
+                [style]="{ height: '200px' }" />
+        </div>
+        <div class="mb-3">
+            <app-base-label-component for="descEn" classes="form-label"> {{'contentEn' | translate}}
+            </app-base-label-component>
+            <p-editor [readonly]="type === EShowTableActions.read" dir="ltr" [formControl]="descriptionEn"
+                [style]="{ height: '200px' }" />
+        </div>
+        @if([EShowTableActions.create, EShowTableActions.update].includes(type)){
+        <div class="mb-3">
+            <app-base-label-component for="descAr" classes="form-label"> {{'blogImage' | translate}}
+            </app-base-label-component>
+            <div class="d-flex">
+                <p-fileUpload (onSelect)="setFile($event)" (onRemove)="removeImage($event)" mode="advanced"
+                    chooseLabel="{{ 'uploadFile' | translate }}" removeStyleClass="p-button-danger"
+                    chooseStyleClass="btn btn-primary" [showUploadButton]="false" [showCancelButton]="false"
+                    chooseIcon="pi pi-upload" maxFileSize="10000000" accept="image/*">
+                </p-fileUpload>
+
+            </div>
+        </div>
+        }
+        @if(imgUrl()){
+        <div class="row mb-3">
+            <aside class="col-md-3"><app-base-image-component [isAssets]="false" alt="blog image"
+                    path="{{imgUrl()}}"></app-base-image-component></aside>
+        </div>
+        }
+
+        @if(type === EShowTableActions.create) { <app-base-button-component (clicked)="addBlog()"
+            [loading]="isProcessing()" [disabled]="form.invalid"
+            classes="btn-primary rounded-pill font_size__13 shadow px-3"> {{'add' | translate
+            }} </app-base-button-component>}
+        @if(type === EShowTableActions.update) {<app-base-button-component (clicked)="updateBlog()"
+            [loading]="isProcessing()" [disabled]="form.invalid || form.pristine"
+            classes="btn-primary rounded-pill font_size__13 shadow px-3"> {{'edit' |
+            translate }} </app-base-button-component>}
+    </app-loading-content-component>
+</div>

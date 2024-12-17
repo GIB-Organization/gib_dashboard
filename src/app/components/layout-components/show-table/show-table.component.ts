@@ -12,6 +12,7 @@ import { ConfirmationService } from 'primeng/api';
 import { Filter } from '../../../core/classes/Filter';
 import { IItemAction } from '../../../models';
 import { BaseLinkComponentComponent } from "../../base-components/base-link-component/base-link-component.component";
+import { helpers } from '../../../core/utils/helpers';
 
 @Component({
   selector: 'app-show-table',
@@ -81,9 +82,6 @@ export class ShowTableComponent {
   }
 
   routeQueryParam(id:string, action:EShowTableActions){
-    return {
-      [EActionQueryParamKey.mode]: action,
-      [EActionQueryParamKey.id]: id,
-    }
+    return helpers.routeQueryParam(id,action);
   }
 }

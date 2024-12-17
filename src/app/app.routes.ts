@@ -84,9 +84,14 @@ const mainLayoutRoutes: Routes = [
                 data:{animation:ERoutes.blogs}
             },
             {
-                path: `${ERoutes.blogs}/:id`,
-                loadComponent: () => import('./views/single-blog/single-blog.component').then(m => m.SingleBlogComponent),
-                data:{animation:ERoutes.blogs}
+                path: `${ERoutes.blog}`,
+                loadComponent: () => import('./views//blogs/blog/blog.component').then(m => m.BlogComponent),
+                data:{animation:ERoutes.blog}
+            },
+            {
+                path: ERoutes.contacts,
+                loadComponent: () => import('./views/contacts/contacts.component').then(m => m.ContactsComponent),
+                data:{animation:ERoutes.contacts}
             },
             
             ...settingsLayoutRoutes

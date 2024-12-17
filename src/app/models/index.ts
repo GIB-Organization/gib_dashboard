@@ -8,4 +8,5 @@ export * from './policy.interface';
 export * from './ticket.interface';
 export * from './filter.interface';
 export * from './routing.interface';
+export * from './blogs.interface';
 export * from './layout/showTable.interface';

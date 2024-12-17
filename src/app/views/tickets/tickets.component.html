@@ -1,12 +1,12 @@
 <div class="row mb-4">
     <aside class="col-md-4">
-        <app-statistic-card classes="shadow text-dark" title="openTickets" [value]="ticketsStoreQuery.metrics?.open??0" icon="lock-open" background="var(--surface-0)" iconColor="var(--orange-500)" iconBg="var(--orange-100)"></app-statistic-card>
+        <app-statistic-card classes="shadow text-dark" title="openTickets" [value]="metrics()?.open??0" icon="lock-open" background="var(--surface-0)" iconColor="var(--orange-500)" iconBg="var(--orange-100)"></app-statistic-card>
     </aside>
     <aside class="col-md-4">
-        <app-statistic-card classes="shadow text-dark" title="closeTickets" [value]="ticketsStoreQuery.metrics?.close??0" icon="lock" background="var(--surface-0)" iconColor="var(--blue-500)" iconBg="var(--blue-100)"></app-statistic-card>
+        <app-statistic-card classes="shadow text-dark" title="closeTickets" [value]="metrics()?.close??0" icon="lock" background="var(--surface-0)" iconColor="var(--blue-500)" iconBg="var(--blue-100)"></app-statistic-card>
     </aside>
     <aside class="col-md-4">
-        <app-statistic-card classes="shadow text-dark" title="processingTickets" [value]="ticketsStoreQuery.metrics?.open??0" icon="microchip" background="var(--surface-0)" iconColor="var(--purple-500)" iconBg="var(--purple-100)"></app-statistic-card>
+        <app-statistic-card classes="shadow text-dark" title="processingTickets" [value]="metrics()?.open??0" icon="microchip" background="var(--surface-0)" iconColor="var(--purple-500)" iconBg="var(--purple-100)"></app-statistic-card>
     </aside>
 </div>
 <app-show-table 
@@ -19,10 +19,10 @@
 [actions]="actions"
 route="/{{ERoutes.ticket}}"
 [(filter)]="filter"
-(filterChange)="getPolicies()" 
-(onExport)="exportPolicies()">
+(filterChange)="getTickets()" 
+(onExport)="exportTickets()">
     <ng-container ngProjectAs="filters">
-        <p-dropdown (onChange)="getPolicies()" [(ngModel)]="filter.type" styleClass="me-2" [options]="types" optionLabel="label" optionValue="id" placeholder="{{'filter' | translate}}">
+        <p-dropdown (onChange)="getTickets()" [(ngModel)]="filter.type" styleClass="me-2" [options]="types" optionLabel="label" optionValue="id" placeholder="{{'filter' | translate}}">
             <ng-template pTemplate="dropdownicon">
                 <i class="pi pi-filter"></i>
             </ng-template>
@@ -39,6 +39,6 @@ route="/{{ERoutes.ticket}}"
         <td> {{item.username}} </td>
         <td> {{item.subject}} </td>
         <td> {{item.createdDate | date}} </td>
-        <td> <app-base-badge-component [colorVar]="ticketStatusBadge[item.status].color"> {{ticketStatusBadge[item.status].label | translate}} </app-base-badge-component> </td>
+        <td> <app-base-badge-component [colorVar]="ticketsBadges.mapTicketsBadges()[item.status].color"> {{ticketsBadges.mapTicketsBadges()[item.status].label | translate}} </app-base-badge-component> </td>
     </ng-template>
 </app-show-table>

@@ -8,4 +8,4 @@ import { akitaDevtools } from '@datorama/akita';
 akitaDevtools();
 
 bootstrapApplication(AppComponent, appConfig)
-  .catch((err) => console.error(err));
+  .catch((err) => console.error(err)); 

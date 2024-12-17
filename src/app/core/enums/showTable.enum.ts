@@ -1,8 +1,8 @@
 export enum EShowTableActions{
-    read = 'SHOW',
-    delete = 'DELETE',
-    update = 'EDIT',
-    create = 'CREATE'
+    read = 'read',
+    delete = 'delete',
+    update = 'update',
+    create = 'create'
 }
 
 export enum EActionQueryParamKey{

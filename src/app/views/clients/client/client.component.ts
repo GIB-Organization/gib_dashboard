@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { EActionQueryParamKey, EShowTableActions } from '../../../core/enums';
 import { ActivatedRoute } from '@angular/router';
@@ -17,7 +16,6 @@ import { ClientsStoreQuery } from '../../../store/clientsStore/clients-store.que
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ClientComponent implements OnInit{
-  #fb = inject(FormBuilder);
   ref = inject(DestroyRef);
   clientsStoreService = inject(ClientsStoreService);
   clientsStoreQuery = inject(ClientsStoreQuery);

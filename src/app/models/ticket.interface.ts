@@ -5,8 +5,11 @@ export interface ITicket{
     subject:string,
     status: ETicketStatus,
     createdDate: string,
-    username: string
-    messages:IMessage[]
+    username: string,
+    userId: string,
+    messages:IMessage[],
+    filePath: string,
+    details:string
 }
 
 export interface IMessage{

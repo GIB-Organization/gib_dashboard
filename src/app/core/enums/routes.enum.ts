@@ -10,12 +10,14 @@ export enum ERoutes{
     tickets = 'tickets',
     promoCodes = 'promotions',
     blogs = 'blogs',
+    blog = 'blogs/blog',
     settings = 'settings',
     ticket = 'tickets/ticket',
     generalSettings = `general-settings`,
     contactInfo = `contact-info`,
     seo = `seo`,
     client = `clients/client`,
+    contacts = `contacts`,
 
 }
 

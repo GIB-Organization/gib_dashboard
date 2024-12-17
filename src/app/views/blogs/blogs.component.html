@@ -1,15 +1,24 @@
 <app-show-table 
     [rows]="rows()" 
-    [columns]="columns"
-    [actions]="actions">
+    [isLoading]="isLoading()" 
+    [columns]="columns" 
+    [actions]="actions"
+    [totalRecords]="totalRecords()" 
+    [isExporting]="isExporting()"
+    [showImport]="false" 
+    route="/{{ERoutes.blog}}"
+    [(filter)]="filter"
+    (onDelete)="deleteItem($event)" 
+    (filterChange)="getBlogs()" 
+    (onExport)="exportBlogs()">
     <ng-container ngProjectAs="buttons">
-        <app-base-button-component classes="btn btn-primary me-1 btn-sm font_size__12 px-3 py-2 rounded-3" icon="plus-circle"> {{ 'addNewBlog' | translate }}</app-base-button-component>
+        <app-base-link-component path="/{{ERoutes.blog}}" classes="btn btn-primary me-1 btn-sm font_size__12 px-3 py-2 rounded-3" icon="plus-circle"> {{ 'addNewBlog' | translate }}</app-base-link-component>
     </ng-container>
     <ng-template #itemsTemplate let-item="item">
         <td> {{item.id}} </td>
-        <td> {{item.id}} </td>
-        <td> {{item.id}} </td>
-        <td> {{item.id}} </td>
-        <td> {{item.id}} </td>
+        <td> {{item.titleAr}} </td>
+        <td> {{item.titleEn}} </td>
+        <td> <span class="d-block" style="width: 100px"> <app-base-image-component [isAssets]="false" alt="blog image" path="{{item.imageUrl}}"></app-base-image-component> </span> </td>
+        <td> {{item.createdDate }} </td>
     </ng-template>
 </app-show-table>

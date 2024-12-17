@@ -1,5 +1,5 @@
 import { EColors } from './../../core/enums/colors.enum';
-import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { ShowTableComponent } from "../../components/layout-components/show-table/show-table.component";
 import { DropdownModule } from 'primeng/dropdown';
 import { TranslateModule } from '@ngx-translate/core';
@@ -15,6 +15,7 @@ import { StatisticCardComponent } from "../../components/views-components/statis
 import { TicketsStoreService } from '../../store/ticketsStore/tickets-store.service';
 import { TicketsStoreQuery } from '../../store/ticketsStore/tickets-store.query';
 import { DatePipe } from '@angular/common';
+import { TicketsBadges } from '../../core/classes/Tickets';
 
 @Component({
   selector: 'app-tickets',
@@ -24,7 +25,7 @@ import { DatePipe } from '@angular/common';
   styleUrl: './tickets.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TicketsComponent {
+export class TicketsComponent implements OnInit{
   columns :string[] = ['username', 'messageTitle', 'dateTime', 'status'] 
   actions = [EShowTableActions.read]
   ref = inject(DestroyRef);
@@ -35,21 +36,20 @@ export class TicketsComponent {
   isLoading = toSignal(this.ticketsStoreQuery.selectLoading(), {initialValue: false});
   totalRecords = toSignal(this.ticketsStoreQuery.count$, {initialValue: 0});
   isExporting = toSignal(this.ticketsStoreQuery.isExporting$, {initialValue: false});
+  metrics = toSignal(this.ticketsStoreQuery.metrics$);
   types = helpers.numericEnumValuesArray(ETicketStatusFilter).map((item:string)=> ({id : item, label: 'enums.ETicketsStatusFilter.' + item}));
   payments = new Payments();
-  ticketStatusBadge:{ [key in EPaymentStatus | any]: {label:string, color:EColors} } = {
-    [ETicketStatus.open] : { label:'enums.ETicketsStatusFilter.1', color: EColors.orange },
-    [ETicketStatus.close] : { label:'enums.ETicketsStatusFilter.2', color: EColors.blue },
-  }
+  ticketsBadges = new TicketsBadges();
   get ERoutes(){return ERoutes}
   get EColors(){return EColors}
   ngOnInit(): void {
-    this.getPolicies()
+    this.getTickets();
+    this.ticketsStoreService.getTicketsMetrics(this.ref);
   }
-  getPolicies(){
+  getTickets(){
     this.ticketsStoreService.getTickets({...this.filter}, this.ref)
   }
-  exportPolicies(){
+  exportTickets(){
     this.ticketsStoreService.exportTickets({...this.filter}, this.ref)
   }
 }

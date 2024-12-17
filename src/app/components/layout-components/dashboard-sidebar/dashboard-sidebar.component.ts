@@ -39,13 +39,18 @@ export class DashboardSidebarComponent {
     },
     {
       title: 'tickets',
-      icon: 'phone',
+      icon: 'headphones',
       path: ERoutes.tickets
     },
     {
       title: 'promoCodes',
       icon: 'megaphone',
       path: ERoutes.promoCodes
+    },
+    {
+      title: 'contactMessages',
+      icon: 'phone',
+      path: ERoutes.contacts
     },
     {
       title: 'blogs',

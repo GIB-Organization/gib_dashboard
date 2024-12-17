@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { Query } from '@datorama/akita';
 import { ITicketsStore } from './tickets-store.interface';
 import { TicketsStore } from './tickets-store.store';
+import { Observable } from 'rxjs';
+import { ITicket } from '../../models';
+import { ETicketStatus } from '../../core/enums';
 
 @Injectable({
   providedIn: 'root'
@@ -24,13 +27,16 @@ export class TicketsStoreQuery extends Query<ITicketsStore> {
   get isProcessing$(){
     return this.select(state=> state.isProcessing);
   }
-  get record$(){
-    return this.select(state=> state.record);
+  get record$():Observable<ITicket>{
+    return this.select(state=> state.record as ITicket);
+  }
+  get recordStatus$(){
+    return this.select(state=> state.record?.status??ETicketStatus.open);
   }
   get record(){
     return this.store.getValue().record;
   }
-  get metrics(){
-    return this.store.getValue().metrics;
+  get metrics$(){
+    return this.select(state=> state.metrics);
   }
 }

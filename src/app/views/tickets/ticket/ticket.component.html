@@ -1,44 +1,68 @@
 <div class="bg-white rounded-4 px-3 py-4 shadow">
-    <div class="d-flex font_size__13">
-        <div class="flex-fill"> 
-            <span class="me-3 secondary_color"> {{'username' | translate}} </span>
-            <span class="fw-light "> وسيم جمال الدسوقى </span>
+    <app-loading-content-component [loading]="isLoading()">
+        <div class="d-flex font_size__13">
+            <div class="flex-fill">
+                <span class="me-3 secondary_color"> {{'username' | translate}} </span>
+                <span class="fw-light "> {{record()?.username}} </span>
+            </div>
+            @if(record()?.status){
+            <app-base-badge-component [colorVar]="ticketsBadges.mapTicketsBadges()[recordStatus()].color"> {{
+                ticketsBadges.mapTicketsBadges()[recordStatus()].label | translate }} </app-base-badge-component>
+            }
         </div>
-        <app-base-badge-component [colorVar]="EColors.orange"></app-base-badge-component>
-    </div>
-    <p-divider />
-    <div class=" font_size__13 mb-4"> 
-        <span class="me-3 secondary_color"> {{'messageTitle' | translate}} </span>
-        <span class="fw-light "> عنوان الرسالة</span>
-    </div>
+        <p-divider />
+        <div class=" font_size__13 mb-4">
+            <span class="me-3 secondary_color"> {{'messageTitle' | translate}} </span>
+            <span class="fw-light "> {{record()?.subject}} </span>
+        </div>
+        <div class=" font_size__13 mb-4">
+            <span class="me-3 secondary_color"> {{'messageDetails' | translate}} </span>
+            <span class="fw-light "> {{record()?.details}} </span>
+        </div>
+        @if(record()?.filePath){
+            <div class=" font_size__13 mb-4 d-flex">
+                <span class="me-3 secondary_color"> {{'attachment' | translate}} </span>
+                <app-base-link-component classes="fw-light primary_color font_size__13 p-0" [external]="true" path="{{record()?.filePath}}"> {{record()?.filePath}} </app-base-link-component>
+            </div>
+        }
 
-    <div class="ticket_messages font_size__12">
-        <div class="mb-3">
-            <div class="d-flex">
-                <div>
-                    <p class="grey_color mb-0">22-10-2024 10:00 PM</p>
-                    <div class="bg-body-secondary rounded p-3 me-auto">
-                        اواجه مشكلة في تسجيل الدخول على المنصة كود التفعيل لا يصل على الموبايل
+        <div class="ticket_messages font_size__12">
+            @for(item of record()?.messages; track item.id){
+                @if(item.senderId === record()?.userId){
+                    <div class="mb-3">
+                        <div class="d-flex">
+                            <div>
+                                <p class="grey_color mb-0"> {{item.createdDate | date}} </p>
+                                <div class="bg-body-secondary rounded p-3 me-auto">
+                                {{item.message}}
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="mb-3">
-            <div class="d-flex justify-content-end w-100">
-                <div>
-                    <p class="grey_color mb-0 text-end">22-10-2024 10:00 PM</p>
-                    <div class="rounded p-3 ms-auto" style="background-color: var(--orange-100);">
-                        نص رد الأدمن
+                }
+                @else {
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-end w-100">
+                            <div>
+                                <p class="grey_color mb-0 text-end"> {{item.createdDate | date}} </p>
+                                <div class="rounded p-3 ms-auto" style="background-color: var(--orange-100);">
+                                    {{item.message}}
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
+                }
+            }
         </div>
-    </div>
-    <p-divider />
-    <div class="message_control mb-3">
-        <textarea placeholder="{{'writeReply' | translate}}" rows="4" cols="20" class="form-control"></textarea>
-    </div>
-    <div class="d-flex flex-row-reverse">
-        <app-base-button-component classes="btn btn-primary text-white px-4 font_size__13" icon="send"> {{'send' | translate}} </app-base-button-component>
-    </div>
+        @if(recordStatus() !== ETicketStatus.close){
+            <p-divider />
+            <div class="message_control mb-3">
+                <textarea [(ngModel)]="replyText" placeholder="{{'writeReply' | translate}}" rows="4" cols="20" class="form-control"></textarea>
+            </div>
+            <div class="d-flex flex-row-reverse">
+                <app-base-button-component (clicked)="submitReply()" [disabled]="!replyText()" [loading]="isProcessing()" classes="btn btn-primary text-white px-4 font_size__13" icon="send"> {{'send' |
+                    translate}} </app-base-button-component>
+            </div>
+        }
+    </app-loading-content-component>
 </div>

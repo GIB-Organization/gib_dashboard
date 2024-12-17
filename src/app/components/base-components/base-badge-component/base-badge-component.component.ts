@@ -10,7 +10,7 @@ import { EColors } from '../../../core/enums';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BaseBadgeComponentComponent {
-  colorVar = input<EColors>();
+  colorVar = input<EColors>(EColors.blue);
   color = computed(()=> `var(--${this.colorVar()}-500)`)
   background = computed(()=> `var(--${this.colorVar()}-100)`)
 }
