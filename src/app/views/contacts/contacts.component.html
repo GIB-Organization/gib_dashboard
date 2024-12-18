@@ -1,1 +1,22 @@
-<p>contacts works!</p>
+<app-show-table 
+[rows]="rows()" 
+[isLoading]="isLoading()" 
+[columns]="columns" 
+[actions]="actions"
+[totalRecords]="totalRecords()" 
+[isExporting]="isExporting()"
+[showImport]="false" 
+route="/{{ERoutes.client}}"
+[(filter)]="filter"
+(onDelete)="deleteItem($event)" 
+(filterChange)="getContacts()" 
+(onExport)="exportContacts()">
+    <ng-template #itemsTemplate let-item="item">
+        <td> {{item.id}} </td>
+        <td> {{item.fullName}} </td>
+        <td> {{item.email}} </td>
+        <td> {{item.phone}} </td>
+        <td> {{item.subject}} </td>
+        <td> {{item.message}} </td>
+    </ng-template>
+</app-show-table>

@@ -1,5 +1,5 @@
 <div class=" bg-white p-4 shadow rounded-4">
-    <app-loading-content-component [loading]="isLoading()">
+    <!-- <app-loading-content-component [loading]="isLoading()"> -->
         <h6 class="h6 mb-5"> {{titleMap[type] | translate}} </h6>
         <div class="mb-3">
             <app-base-label-component for="titleAr" classes="form-label"> {{'titleAr' | translate}}
@@ -69,8 +69,8 @@
             classes="btn-primary rounded-pill font_size__13 shadow px-3"> {{'add' | translate
             }} </app-base-button-component>}
         @if(type === EShowTableActions.update) {<app-base-button-component (clicked)="updateBlog()"
-            [loading]="isProcessing()" [disabled]="form.invalid || form.pristine"
+            [loading]="isProcessing()" [disabled]="form.invalid"
             classes="btn-primary rounded-pill font_size__13 shadow px-3"> {{'edit' |
             translate }} </app-base-button-component>}
-    </app-loading-content-component>
+    <!-- </app-loading-content-component> -->
 </div>

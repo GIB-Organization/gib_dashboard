@@ -11,13 +11,6 @@ route="/{{ERoutes.client}}"
 (onDelete)="deleteItem($event)" 
 (filterChange)="getClients()" 
 (onExport)="exportClients()">
-    <!-- <ng-container ngProjectAs="filters">
-        <p-dropdown styleClass="me-2" [options]="[1,2]" placeholder="{{'filter' | translate}}" [showClear]="true">
-            <ng-template pTemplate="dropdownicon">
-                <i class="pi pi-filter"></i>
-            </ng-template>
-        </p-dropdown>
-    </ng-container> -->
     <ng-template #itemsTemplate let-item="item">
         <td> {{item.id}} </td>
         <td> {{item.fullName}} </td>
