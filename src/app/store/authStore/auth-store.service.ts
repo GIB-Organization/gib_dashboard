@@ -73,22 +73,6 @@ export class AuthStoreService {
       }
     });
   }
-  /**
-   * @param  {IChangePassword} data
-   */
-  changePassword(data: IChangePassword) {
-    this.store.setLoading(true)
-    this.api.changePassword(data).pipe(take(1)).subscribe({
-      next: () => {
-        this.toasterService.addSuccess()
-      },
-      complete: () => this.store.setLoading(false),
-      error: (err:IErrorResponse) => {
-        this.store.setLoading(false)
-        this.toasterService.addError(err.error.message ?? 'customRequestErrors.wrongPassword')
-      }
-    });
-  }
 
 
   forgotPassword(data: IForgotPassword) {

@@ -16,9 +16,9 @@ export enum ERoutes{
     generalSettings = `general-settings`,
     contactInfo = `contact-info`,
     seo = `seo`,
+    changePassword = `change-password`,
     client = `clients/client`,
     contacts = `contacts`,
-
 }
 
 export enum EQueryParams{

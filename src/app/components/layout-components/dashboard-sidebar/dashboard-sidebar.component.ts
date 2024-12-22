@@ -42,11 +42,11 @@ export class DashboardSidebarComponent {
       icon: 'headphones',
       path: ERoutes.tickets
     },
-    {
-      title: 'promoCodes',
-      icon: 'megaphone',
-      path: ERoutes.promoCodes
-    },
+    // {
+    //   title: 'promoCodes',
+    //   icon: 'megaphone',
+    //   path: ERoutes.promoCodes
+    // },
     {
       title: 'contactMessages',
       icon: 'phone',

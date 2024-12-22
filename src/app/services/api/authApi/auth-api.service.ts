@@ -35,14 +35,6 @@ export class AuthApiService {
   changeInfo(data:IChangeInfo): Observable<IResponse<ILoginResponse>>{
     return this.http.post<IResponse<ILoginResponse>>(`${this.baseUrl}/${this.path}/changeInfo`, data)
   }
-  
-  /**
-   * @param  {IChangePassword} data
-   * @returns Observable
-   */
-  changePassword(data:IChangePassword): Observable<IResponse<null>>{
-    return this.http.post<IResponse<null>>(`${this.baseUrl}/${this.path}/changePassword`, data)
-  }
   /**
    * @param  {IForgotPassword} data
    * @returns Observable

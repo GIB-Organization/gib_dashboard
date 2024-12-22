@@ -4,18 +4,7 @@ import { IBlogsStore } from './blogs-store.interface';
 
 const initValue = () : IBlogsStore =>{
   return{
-    records:[
-      {
-        id: '',
-        slug: '',
-        imageUrl: 'https://placehold.co/600x400',
-        titleAr: '',
-        titleEn: '',
-        createdDate: '',
-        descriptionAr: '',
-        descriptionEn: ''
-      }
-    ],
+    records:[],
     count: 0,
     isExporting: false,
   }

@@ -18,6 +18,16 @@ const settingsLayoutRoutes: Routes = [
                 loadComponent: () => import('./views/settings/general/general.component').then(m => m.GeneralComponent),
                 data:{animation:'general'}
             },
+            {
+                path: ERoutes.seo,
+                loadComponent: () => import('./views/settings/seo/seo.component').then(m => m.SeoComponent),
+                data:{animation:'seo'}
+            },
+            {
+                path: ERoutes.changePassword,
+                loadComponent: () => import('./views/settings/change-password/change-password.component').then(m => m.ChangePasswordComponent),
+                data:{animation:'seo'}
+            },
         ]
     }
 ]

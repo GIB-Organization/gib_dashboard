@@ -1,17 +1,76 @@
-<div class="mb-3">
-    <app-base-label-component for="titleAr" classes="form-label"> {{'websiteTitleAr' | translate}} </app-base-label-component>
-    <input type="text" id="titleAr" class="form-control">
+<div [formGroup]="form">
+    <app-loading-content-component [loading]="isLoading()">
+        <div class="mb-3">
+            <app-base-label-component for="titleAr" classes="form-label"> {{'websiteTitleAr' | translate}}
+            </app-base-label-component>
+            <input formControlName="siteTitleAr" type="text" id="titleAr" class="form-control">
+        </div>
+        <div class="mb-3">
+            <app-base-label-component for="titleEn" classes="form-label"> {{'websiteTitleEn' | translate}}
+            </app-base-label-component>
+            <input formControlName="siteTitleEn" type="text" id="titleEn" class="form-control">
+        </div>
+        <div class="mb-3">
+            <app-base-label-component for="descAr" classes="form-label"> {{'websiteDescAr' | translate}}
+            </app-base-label-component>
+            <input formControlName="siteDescriptionAr" type="text" id="descAr" class="form-control">
+        </div>
+        <div class="mb-3">
+            <app-base-label-component for="descEn" classes="form-label"> {{'websiteDescEn' | translate}}
+            </app-base-label-component>
+            <input formControlName="siteDescriptionEn" type="text" id="descEn" class="form-control">
+        </div>
+        <div class="mb-3">
+            <app-base-label-component for="address" classes="form-label"> {{'address' | translate}}
+            </app-base-label-component>
+            <input formControlName="address" type="text" id="address" class="form-control">
+        </div>
+        <div class="mb-3">
+            <app-base-label-component for="instagram" classes="form-label"> {{'instagram' | translate}}
+            </app-base-label-component>
+            <input formControlName="instagram" type="text" id="instagram" class="form-control">
+        </div>
+        <div class="mb-3">
+            <app-base-label-component for="facebook" classes="form-label"> {{'facebook' | translate}}
+            </app-base-label-component>
+            <input formControlName="facebook" type="text" id="facebook" class="form-control">
+        </div>
+        <div class="mb-3">
+            <app-base-label-component for="youtube" classes="form-label"> {{'youtube' | translate}}
+            </app-base-label-component>
+            <input formControlName="youtube" type="text" id="youtube" class="form-control">
+        </div>
+        <div class="mb-3">
+            <app-base-label-component for="x" classes="form-label"> {{'x' | translate}}
+            </app-base-label-component>
+            <input formControlName="x" type="text" id="x" class="form-control">
+        </div>
+        <div class="mb-3">
+            <app-base-label-component for="phone" classes="form-label"> {{'phone' | translate}}
+            </app-base-label-component>
+            <input formControlName="phone" type="text" id="phone" class="form-control">
+        </div>
+        <div class="mb-3">
+            <app-base-label-component for="email" classes="form-label"> {{'email' | translate}}
+            </app-base-label-component>
+            <input formControlName="email" type="text" id="email" class="form-control">
+        </div>
+        <div class="mb-3">
+            <app-base-label-component for="showMedicalFaults" classes="form-label"> {{'showMedicalFaults' | translate}}
+            </app-base-label-component>
+            <p-inputSwitch formControlName="showMedicalFaults" inputId="showMedicalFaults"/>
+        </div>
+        <div class="mb-3">
+            <app-base-label-component for="showMedicalInsurance" classes="form-label"> {{'showMedicalInsurance' | translate}}
+            </app-base-label-component>
+            <p-inputSwitch formControlName="showMedicalInsurance" inputId="showMedicalInsurance"/>
+        </div>
+        <div class="mb-3">
+            <app-base-label-component for="showCarInsurance" classes="form-label"> {{'showCarInsurance' | translate}}
+            </app-base-label-component>
+            <p-inputSwitch formControlName="showCarInsurance" inputId="showCarInsurance"/>
+        </div>
+        <app-base-button-component (clicked)="submit()" [loading]="isProcessing()" [disabled]="form.pristine" classes="btn btn-primary font_size__13 px-4"> {{'save' | translate}}
+        </app-base-button-component>
+    </app-loading-content-component>
 </div>
-<div class="mb-3">
-    <app-base-label-component for="titleEn" classes="form-label"> {{'websiteTitleEn' | translate}} </app-base-label-component>
-    <input type="text" id="titleEn" class="form-control">
-</div>
-<div class="mb-3">
-    <app-base-label-component for="descAr" classes="form-label"> {{'websiteDescAr' | translate}} </app-base-label-component>
-    <input type="text" id="descAr" class="form-control">
-</div>
-<div class="mb-3">
-    <app-base-label-component for="descEn" classes="form-label"> {{'websiteDescEn' | translate}} </app-base-label-component>
-    <input type="text" id="descEn" class="form-control">
-</div>
-<app-base-button-component classes="btn btn-primary font_size__13 px-4"> {{'save' | translate}} </app-base-button-component>

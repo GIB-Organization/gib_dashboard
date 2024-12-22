@@ -6,48 +6,46 @@ import { SettingsStoreService } from '../../../store/settingsStore/settings-stor
 import { SettingsStoreQuery } from '../../../store/settingsStore/settings-store.query';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { IGeneralSettings, IGeneralSettingsFormGroup } from '../../../models';
+import { ISeoSettings, ISeoSettingsFormGroup } from '../../../models';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { LoadingContentComponentComponent } from "../../../components/shared-components/loading-content-component/loading-content-component.component";
 
 @Component({
-  selector: 'app-general',
+  selector: 'app-seo',
   standalone: true,
   imports: [BaseLabelComponentComponent, TranslateModule, BaseButtonComponentComponent, ReactiveFormsModule, InputSwitchModule, LoadingContentComponentComponent],
-  templateUrl: './general.component.html',
-  styleUrl: './general.component.scss',
+  templateUrl: './seo.component.html',
+  styleUrl: './seo.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class GeneralComponent implements OnInit{
+export class SeoComponent {
   ref = inject(DestroyRef)
   settingsStoreService = inject(SettingsStoreService);
   settingsStoreQuery = inject(SettingsStoreQuery);
-  settings = toSignal(this.settingsStoreQuery.generalSettings$);
+  settings = toSignal(this.settingsStoreQuery.seoSettings$);
   isProcessing = toSignal(this.settingsStoreQuery.isProcessing$);
   isLoading = toSignal(this.settingsStoreQuery.selectLoading());
   #fb = inject(FormBuilder)
 
-  form = this.#fb.group<IGeneralSettingsFormGroup>({
-    siteTitleAr: this.#fb.control(''),
-    siteTitleEn: this.#fb.control(''),
-    siteDescriptionAr: this.#fb.control(''),
-    siteDescriptionEn: this.#fb.control(''),
-    address: this.#fb.control(''),
-    instagram: this.#fb.control(''),
-    facebook: this.#fb.control(''),
-    youtube: this.#fb.control(''),
-    x: this.#fb.control(''),
-    phone: this.#fb.control(''),
-    email: this.#fb.control(''),
-    showMedicalFaults: this.#fb.control(true),
-    showMedicalInsurance: this.#fb.control(true),
-    showCarInsurance: this.#fb.control(true)
+  form = this.#fb.group<ISeoSettingsFormGroup>({
+    homeTitle: this.#fb.control(''),
+    homeDescription: this.#fb.control(''),
+    contactTitle: this.#fb.control(''),
+    contactDescription: this.#fb.control(''),
+    aboutTitle: this.#fb.control(''),
+    aboutDescription: this.#fb.control(''),
+    blogsTitle: this.#fb.control(''),
+    blogsDescription: this.#fb.control(''),
+    privacyPolicyTitle: this.#fb.control(''),
+    privacyPolicyDescription: this.#fb.control(''),
+    termsTitle: this.#fb.control(''),
+    termsDescription: this.#fb.control('')
   })
 
   ngOnInit(): void {
-    this.settingsStoreService.getGeneralSettings(this.ref, ()=> this.form.patchValue(this.settings() as IGeneralSettings))
+    this.settingsStoreService.getSeoSettings(this.ref, () => this.form.patchValue(this.settings() as ISeoSettings))
   }
-  submit(){
-    this.settingsStoreService.updateGeneralSettings(this.form.value as IGeneralSettings, this.ref, ()=> this.form.markAsUntouched());
+  submit() {
+    this.settingsStoreService.updateSeoSettings(this.form.value as ISeoSettings, this.ref, () => this.form.markAsUntouched());
   }
 }

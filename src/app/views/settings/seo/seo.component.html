@@ -1,0 +1,66 @@
+<div [formGroup]="form">
+    <app-loading-content-component [loading]="isLoading()">
+        <div class="mb-3">
+            <app-base-label-component for="homeTitle" classes="form-label"> {{'homeTitle' | translate}}
+            </app-base-label-component>
+            <input formControlName="homeTitle" type="text" id="homeTitle" class="form-control">
+        </div>
+        <div class="mb-3">
+            <app-base-label-component for="homeDescription" classes="form-label"> {{'homeDescription' | translate}}
+            </app-base-label-component>
+            <input formControlName="homeDescription" type="text" id="homeDescription" class="form-control">
+        </div>
+        <div class="mb-3">
+            <app-base-label-component for="contactTitle" classes="form-label"> {{'contactTitle' | translate}}
+            </app-base-label-component>
+            <input formControlName="contactTitle" type="text" id="descAr" class="form-control">
+        </div>
+        <div class="mb-3">
+            <app-base-label-component for="contactDescription" classes="form-label"> {{'contactDescription' | translate}}
+            </app-base-label-component>
+            <input formControlName="contactDescription" type="text" id="contactDescription" class="form-control">
+        </div>
+        <div class="mb-3">
+            <app-base-label-component for="aboutTitle" classes="form-label"> {{'aboutTitle' | translate}}
+            </app-base-label-component>
+            <input formControlName="aboutTitle" type="text" id="aboutTitle" class="form-control">
+        </div>
+        <div class="mb-3">
+            <app-base-label-component for="aboutDescription" classes="form-label"> {{'aboutDescription' | translate}}
+            </app-base-label-component>
+            <input formControlName="aboutDescription" type="text" id="aboutDescription" class="form-control">
+        </div>
+        <div class="mb-3">
+            <app-base-label-component for="blogsTitle" classes="form-label"> {{'blogsTitle' | translate}}
+            </app-base-label-component>
+            <input formControlName="blogsTitle" type="text" id="blogsTitle" class="form-control">
+        </div>
+        <div class="mb-3">
+            <app-base-label-component for="blogsDescription" classes="form-label"> {{'blogsDescription' | translate}}
+            </app-base-label-component>
+            <input formControlName="blogsDescription" type="text" id="blogsDescription" class="form-control">
+        </div>
+        <div class="mb-3">
+            <app-base-label-component for="privacyPolicyTitle" classes="form-label"> {{'privacyPolicyTitle' | translate}}
+            </app-base-label-component>
+            <input formControlName="privacyPolicyTitle" type="text" id="privacyPolicyTitle" class="form-control">
+        </div>
+        <div class="mb-3">
+            <app-base-label-component for="privacyPolicyDescription" classes="form-label"> {{'privacyPolicyDescription' | translate}}
+            </app-base-label-component>
+            <input formControlName="privacyPolicyDescription" type="text" id="privacyPolicyDescription" class="form-control">
+        </div>
+        <div class="mb-3">
+            <app-base-label-component for="termsTitle" classes="form-label"> {{'termsTitle' | translate}}
+            </app-base-label-component>
+            <input formControlName="termsTitle" type="text" id="termsTitle" class="form-control">
+        </div>
+        <div class="mb-3">
+            <app-base-label-component for="termsDescription" classes="form-label"> {{'termsDescription' | translate}}
+            </app-base-label-component>
+            <input formControlName="termsDescription" type="text" id="termsDescription" class="form-control">
+        </div>
+        <app-base-button-component (clicked)="submit()" [loading]="isProcessing()" [disabled]="form.pristine" classes="btn btn-primary font_size__13 px-4"> {{'save' | translate}}
+        </app-base-button-component>
+    </app-loading-content-component>
+</div>

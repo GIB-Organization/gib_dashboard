@@ -22,13 +22,13 @@ export class SettingsComponent extends AnimationsContext {
       title:'generalSettings',
       link: ERoutes.generalSettings,
     },
+    {
+      title:'seo',
+      link: ERoutes.seo,
+    },
     // {
-    //   title:'seo',
-    //   link: ERoutes.contactInfo,
-    // },
-    // {
-    //   title:'contactInfo',
-    //   link: ERoutes.seo,
+    //   title:'changePassword',
+    //   link: ERoutes.changePassword,
     // },
   ]
 }
