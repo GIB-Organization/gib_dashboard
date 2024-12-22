@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { UsersStoreQuery } from './../../store/usersStore/users-store.query';
 import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { ShowTableComponent } from '../../components/layout-components/show-table/show-table.component';
@@ -13,7 +14,7 @@ import { BaseLinkComponentComponent } from "../../components/base-components/bas
 @Component({
   selector: 'app-users',
   standalone: true,
-  imports: [ShowTableComponent, ButtonModule, DatePipe, BaseLinkComponentComponent],
+  imports: [ShowTableComponent, ButtonModule, DatePipe, BaseLinkComponentComponent, TranslateModule],
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
