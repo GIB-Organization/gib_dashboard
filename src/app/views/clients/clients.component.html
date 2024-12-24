@@ -12,7 +12,7 @@ route="/{{ERoutes.client}}"
 (filterChange)="getClients()" 
 (onExport)="exportClients()">
     <ng-template #itemsTemplate let-item="item">
-        <td> {{item.id}} </td>
+        
         <td> {{item.fullName}} </td>
         <td> {{item.email}} </td>
         <td> {{item.phoneNumber}} </td>

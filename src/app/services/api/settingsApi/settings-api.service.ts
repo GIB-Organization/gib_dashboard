@@ -43,6 +43,6 @@ export class SettingsApiService {
    * @returns Observable
    */
   changePassword(data:IChangePassword): Observable<IResponse<null>>{
-    return this.http.post<IResponse<null>>(`${this.baseUrl}/${this.path}/changePassword`, data)
+    return this.http.put<IResponse<null>>(`${this.baseUrl}/${this.path}/changePassword`, data)
   }
 }

@@ -26,9 +26,9 @@ export class SettingsComponent extends AnimationsContext {
       title:'seo',
       link: ERoutes.seo,
     },
-    // {
-    //   title:'changePassword',
-    //   link: ERoutes.changePassword,
-    // },
+    {
+      title:'changePassword',
+      link: ERoutes.changePassword,
+    },
   ]
 }

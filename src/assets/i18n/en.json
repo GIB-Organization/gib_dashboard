@@ -121,6 +121,7 @@
     "termsTitle": "Title of the terms and conditions page",
     "termsDescription": "Description of the terms and conditions page",
     "donePleaseLoginAgain": "The password has been changed successfully, please log in with the new password",
+    "changePassword":"Change Password",
     "httpErrors": {
       "401": "Your session has expired. "
     },

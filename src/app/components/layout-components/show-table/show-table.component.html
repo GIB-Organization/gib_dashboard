@@ -40,6 +40,7 @@
         </ng-template>
         <ng-template pTemplate="body" let-item let-rowIndex="rowIndex">
             <tr>
+                <td> {{rowIndex + 1}} </td>
                 <ng-container [ngTemplateOutletContext]="{ item: item }"
                     [ngTemplateOutlet]="itemsTemplate()"></ng-container>
                 <td>

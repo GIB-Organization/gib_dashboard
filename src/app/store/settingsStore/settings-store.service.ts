@@ -4,6 +4,7 @@ import { SettingsApiService } from '../../services/api/settingsApi/settings-api.
 import { IChangePassword, IErrorResponse, IGeneralSettings, ISeoSettings } from '../../models';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ToasterService } from '../../services/toaster/toaster.service';
+import { AuthStoreService } from '../authStore/auth-store.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ export class SettingsStoreService {
   private api = inject(SettingsApiService);
   private store = inject(SettingsStore);
   private toaster = inject(ToasterService);
+  private authStoreService = inject(AuthStoreService);
 
   getGeneralSettings(ref: DestroyRef, callback?: any) {
     this.store.setLoading(true)
@@ -69,7 +71,8 @@ export class SettingsStoreService {
     this.store.setLoading(true)
     this.api.changePassword(data).pipe(takeUntilDestroyed(ref)).subscribe({
       next: () => {
-        this.toaster.addSuccess('donePleaseLoginAgain')
+        this.toaster.addSuccess('donePleaseLoginAgain');
+        this.authStoreService.logout();
       },
       complete: () => this.store.setLoading(false),
       error: (err: IErrorResponse) => {

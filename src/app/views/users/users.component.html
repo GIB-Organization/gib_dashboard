@@ -16,7 +16,7 @@
         <app-base-link-component path="/{{ERoutes.user}}" classes="btn btn-primary me-1 btn-sm font_size__12 px-3 py-2 rounded-3" icon="plus-circle">  {{'addUser' | translate}} </app-base-link-component>
     </ng-container>
     <ng-template #itemsTemplate let-item="item">
-        <td> {{item.id}} </td>
+        
         <td> {{item.fullName}} </td>
         <td> {{item.email}} </td>
         <td> {{item.createdDate | date : 'medium'}} </td>
