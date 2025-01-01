@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit } from '
 import { ShowTableComponent } from "../../components/layout-components/show-table/show-table.component";
 import { DropdownModule } from 'primeng/dropdown';
 import { TranslateModule } from '@ngx-translate/core';
-import { EPaymentStatus, ERoutes, EShowTableActions, ETicketStatus, ETicketStatusFilter } from '../../core/enums';
+import { ERoutes, EShowTableActions, ETicketStatusFilter } from '../../core/enums';
 import { PoliciesFilter } from '../../core/classes/Filter';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
@@ -26,7 +26,7 @@ import { TicketsBadges } from '../../core/classes/Tickets';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TicketsComponent implements OnInit{
-  columns :string[] = ['username', 'messageTitle', 'dateTime', 'status'] 
+  columns :string[] = ['username', 'phone', 'messageTitle', 'dateTime', 'status'] 
   actions = [EShowTableActions.read]
   ref = inject(DestroyRef);
   ticketsStoreService = inject(TicketsStoreService);

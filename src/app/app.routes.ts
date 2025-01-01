@@ -103,6 +103,16 @@ const mainLayoutRoutes: Routes = [
                 loadComponent: () => import('./views/contacts/contacts.component').then(m => m.ContactsComponent),
                 data:{animation:ERoutes.contacts}
             },
+            {
+                path: ERoutes.faqs,
+                loadComponent: () => import('./views/faqs/faqs.component').then(m => m.FaqsComponent),
+                data:{animation:ERoutes.faqs}
+            },
+            {
+                path: `${ERoutes.faq}`,
+                loadComponent: () => import('./views/faqs/faq/faq.component').then(m => m.FaqComponent),
+                data:{animation:ERoutes.faq}
+            },
             
             ...settingsLayoutRoutes
         ],

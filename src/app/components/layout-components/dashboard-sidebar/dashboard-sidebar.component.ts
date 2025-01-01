@@ -4,7 +4,6 @@ import { BaseLinkComponentComponent } from "../../base-components/base-link-comp
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ERoutes } from '../../../core/enums';
 import { BaseButtonComponentComponent } from "../../base-components/base-button-component/base-button-component.component";
-import { AuthStoreService } from '../../../store/authStore/auth-store.service';
 import { ILayoutStrategy, LtrDirection, RtlDirection } from '../../../core/classes/LayoutStyleDir';
 
 @Component({
@@ -28,7 +27,6 @@ export class DashboardSidebarComponent {
     this.rtlDirection = RtlDirection;
     this.switchDirection = RtlDirection;
   }
-  authStoreService = inject(AuthStoreService);
   translate = inject(TranslateService);
   ltrDirection!: ILayoutStrategy;
   rtlDirection!: ILayoutStrategy;
@@ -73,6 +71,11 @@ export class DashboardSidebarComponent {
       title: 'blogs',
       icon: 'file-edit',
       path: ERoutes.blogs
+    },
+    {
+      title: 'faqs',
+      icon: 'question',
+      path: ERoutes.faqs
     },
     {
       title: 'settings',

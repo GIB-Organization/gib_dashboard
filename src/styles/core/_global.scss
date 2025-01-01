@@ -105,6 +105,11 @@ td, th{
     font-family: var(--fontLight);
 }
 
+.flip_icon{
+    transform-origin: center;
+    transform: rotateY(180deg)
+}
+
 .transition{
     @extend %transition;
 }
