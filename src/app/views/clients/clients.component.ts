@@ -28,7 +28,7 @@ export class ClientsComponent {
   isLoading = toSignal(this.clientsStoreQuery.selectLoading(), {initialValue: false});
   totalRecords = toSignal(this.clientsStoreQuery.count$, {initialValue: 0});
   isExporting = toSignal(this.clientsStoreQuery.isExporting$, {initialValue: false});
-  actions = [EShowTableActions.delete, EShowTableActions.read]
+  actions = [EShowTableActions.read]
 
   get ERoutes(){return ERoutes}
   ngOnInit(): void {
