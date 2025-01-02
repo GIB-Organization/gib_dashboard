@@ -1,5 +1,7 @@
 {
     "lang":"عربي",
+    "hello":"Hi, {{name}}",
+    "back":"Back",
     "statistics": " statistics ",
     "manageUsers": "User management",
     "docsManagment": "Document management",
@@ -123,6 +125,12 @@
     "donePleaseLoginAgain": "The password has been changed successfully, please log in with the new password",
     "changePassword":"Change Password",
     "oldPassword":"Old Password",
+    "faqs":"Faqs",
+    "addFaq":" Add Faq ",
+    "updateFaq":" Update Faq ",
+    "readFaq":"Read Faq",
+    "descriptionAr":"Description In Arabic",
+    "descriptionEn":"Description In English",
     "httpErrors": {
       "401": "Your session has expired. "
     },

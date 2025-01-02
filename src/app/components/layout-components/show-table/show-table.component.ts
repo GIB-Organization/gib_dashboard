@@ -84,4 +84,6 @@ export class ShowTableComponent {
   routeQueryParam(id:string, action:EShowTableActions){
     return helpers.routeQueryParam(id,action);
   }
+
+  getRowIndex(index:number){ return ((this.filter().page - 1) * this.filter().limit) + index + 1 }
 }

@@ -1,0 +1,48 @@
+<div class="user_form bg-white p-4 shadow rounded-4">
+    <app-loading-content-component [loading]="isLoading()">
+        <h6 class="h6 mb-5"> {{titleMap[type] | translate}} </h6>
+        <div class="mb-3">
+            <app-base-label-component for="titleAr" classes="form-label" [required]="true"> {{'titleAr' |
+                translate}} </app-base-label-component>
+            <input [formControl]="titleAr" type="text" class="form-control" id="titleAr">
+            @if(titleAr.invalid && titleAr.touched){
+            <app-input-validation-alert-component> {{'errors.required' | translate}}
+            </app-input-validation-alert-component>
+            }
+        </div>
+        <div class="mb-3">
+            <app-base-label-component for="titleAr" classes="form-label" [required]="true"> {{'titleEn' |
+                translate}} </app-base-label-component>
+            <input [formControl]="titleEn" type="text" class="form-control" id="titleEn">
+            @if(titleEn.invalid && titleEn.touched){
+            <app-input-validation-alert-component> {{'errors.required' | translate}}
+            </app-input-validation-alert-component>
+            }
+        </div>
+        <div class="mb-3">
+            <app-base-label-component for="descriptionAr" classes="form-label" [required]="true"> {{'descriptionAr' |
+                translate}} </app-base-label-component>
+            <textarea [formControl]="descriptionAr" type="text" class="form-control" id="descriptionAr"></textarea>
+            @if(descriptionAr.invalid && descriptionAr.touched){
+            <app-input-validation-alert-component> {{'errors.required' | translate}}
+            </app-input-validation-alert-component>
+            }
+        </div>
+        <div class="mb-3">
+            <app-base-label-component for="descriptionEn" classes="form-label" [required]="true"> {{'descriptionEn' |
+                translate}} </app-base-label-component>
+            <textarea [formControl]="descriptionEn" type="text" class="form-control" id="descriptionEn"></textarea>
+            @if(descriptionEn.invalid && descriptionEn.touched){
+            <app-input-validation-alert-component> {{'errors.required' | translate}}
+            </app-input-validation-alert-component>
+            }
+        </div>
+        @if(type === EShowTableActions.create) { <app-base-button-component (clicked)="addFaq()"
+            [loading]="isProcessing()" [disabled]="form.invalid" classes="btn-primary rounded-pill font_size__13 shadow px-3"> {{'add' | translate
+            }} </app-base-button-component>}
+        @if(type === EShowTableActions.update) {<app-base-button-component (clicked)="updateFaq()"
+            [loading]="isProcessing()" [disabled]="form.invalid || form.pristine" classes="btn-primary rounded-pill font_size__13 shadow px-3"> {{'edit' |
+            translate }} </app-base-button-component>}
+
+    </app-loading-content-component>
+</div>
