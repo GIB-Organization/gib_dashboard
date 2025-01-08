@@ -6,6 +6,7 @@ export interface ITicket{
     status: ETicketStatus,
     createdDate: string,
     username: string,
+    phoneNumber: string,
     userId: string,
     messages:IMessage[],
     filePath: string,

@@ -14,6 +14,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, input 
 export class BaseButtonComponentComponent {
   classes = input<string>();
   icon = input<string>();
+  iconClasses = input<string>();
   disabled = input<boolean>();
   loading = input<boolean>();
   

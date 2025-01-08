@@ -11,4 +11,5 @@ export * from './routing.interface';
 export * from './blogs.interface';
 export * from './contacts.interface';
 export * from './settings.interface';
+export * from './faqs.interface';
 export * from './layout/showTable.interface';

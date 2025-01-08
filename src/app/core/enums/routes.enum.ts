@@ -19,6 +19,8 @@ export enum ERoutes{
     changePassword = `change-password`,
     client = `clients/client`,
     contacts = `contacts`,
+    faqs = `faqs`,
+    faq = `faqs/faq`,
 }
 
 export enum EQueryParams{

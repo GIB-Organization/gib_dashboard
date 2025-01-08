@@ -1,0 +1,10 @@
+<div class="top_bar w-100 bg-white rounded-4 py-2 px-3 d-flex flex-row flex-wrap justify-content-between align-items-center">
+    <p class="my-2 secondary_color font_size__13">
+        {{'hello' | translate : {name: authStoreQuery.fullName} }}
+    </p>
+
+    <div class="d-flex">
+        <app-base-button-component (clicked)="location.back()" classes="font_size__13 text-start align-items-center ms-3" icon="arrow-left"> {{'back' | translate}} </app-base-button-component>
+        <app-base-button-component (clicked)="authStoreService.logout()" iconClasses="flip_icon" classes="btn-secondary font_size__13 text-start align-items-center" icon="sign-out"> {{'logout' | translate}} </app-base-button-component>
+    </div>
+</div>

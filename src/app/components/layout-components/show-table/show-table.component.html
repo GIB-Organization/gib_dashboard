@@ -40,7 +40,7 @@
         </ng-template>
         <ng-template pTemplate="body" let-item let-rowIndex="rowIndex">
             <tr>
-                <td> {{rowIndex + 1}} </td>
+                <td> {{getRowIndex(rowIndex)}} </td>
                 <ng-container [ngTemplateOutletContext]="{ item: item }"
                     [ngTemplateOutlet]="itemsTemplate()"></ng-container>
                 <td>
@@ -67,7 +67,7 @@
     [rows]="filter().limit" 
     [totalRecords]="totalRecords()" 
     [pageLinkSize]="3"
-    [rowsPerPageOptions]="[10, 20, 30]" 
+    [rowsPerPageOptions]="[10, 20, 30, 50, 70, 80, 100]" 
     (onPageChange)="pageChanged($event)"/>
 </div>
 

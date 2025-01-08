@@ -37,6 +37,7 @@ route="/{{ERoutes.ticket}}"
     <ng-template #itemsTemplate let-item="item">
         
         <td> {{item.username}} </td>
+        <td> {{item.phoneNumber}} </td>
         <td> {{item.subject}} </td>
         <td> {{item.createdDate | date}} </td>
         <td> <app-base-badge-component [colorVar]="ticketsBadges.mapTicketsBadges()[item.status].color"> {{ticketsBadges.mapTicketsBadges()[item.status].label | translate}} </app-base-badge-component> </td>

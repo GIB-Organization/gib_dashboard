@@ -1,0 +1,21 @@
+<app-show-table
+    [rows]="rows()" 
+    [isLoading]="isLoading()"
+    [columns]="columns"
+    [actions]="actions"
+    [totalRecords]="totalRecords()"
+    [showImport]="false"
+    [showExport]="false"
+    route="/{{ERoutes.faq}}"
+    [(filter)]="filter"
+    (onDelete)="deleteItem($event)"
+    (filterChange)="getFaqs()"
+    >
+    <ng-container ngProjectAs="buttons">
+        <app-base-link-component path="/{{ERoutes.faq}}" classes="btn btn-primary me-1 btn-sm font_size__12 px-3 py-2 rounded-3" icon="plus-circle">  {{'addFaq' | translate}} </app-base-link-component>
+    </ng-container>
+    <ng-template #itemsTemplate let-item="item">
+        <td> {{item.titleAr}} </td>
+        <td> {{item.titleEn}} </td>
+    </ng-template>
+</app-show-table>
