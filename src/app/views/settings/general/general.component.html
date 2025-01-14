@@ -48,7 +48,12 @@
         <div class="mb-3">
             <app-base-label-component for="phone" classes="form-label"> {{'phone' | translate}}
             </app-base-label-component>
-            <input formControlName="phone" type="text" id="phone" class="form-control">
+            <input formControlName="phone" type="text" id="phone" class="form-control"
+            [ngStyle]="{
+                'direction': 'ltr',
+                'text-align': getlang() === 'ar' ? 'right' : 'left'
+              }"
+                                          >
         </div>
         <div class="mb-3">
             <app-base-label-component for="email" classes="form-label"> {{'email' | translate}}
